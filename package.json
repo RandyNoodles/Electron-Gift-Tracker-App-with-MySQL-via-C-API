@@ -1,0 +1,15 @@
+{
+  "name": "reldb_final",
+  "version": "1.0.0",
+  "description": "Final project for Relational Databases. By Josh Rice & Josh Horsley. Gift tracker app.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josh Rice & Josh Horsley",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.2.1"
+  }
+}

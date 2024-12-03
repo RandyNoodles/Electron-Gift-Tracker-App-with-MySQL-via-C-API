@@ -1,0 +1,7 @@
+This folder holds extra scripts for our Main.js
+
+Main.js is where we spawn windows, make system calls etc.
+
+But it could quickly get bloated if we stuck it all in one file,
+so we can add extra stuff here and import it to main using:
+
