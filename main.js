@@ -15,6 +15,7 @@ let mainWindow;
 
 app.on('ready', ()=>{
     mainWindow = new BrowserWindow({
+        //This links it to the preload file
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
@@ -23,8 +24,10 @@ app.on('ready', ()=>{
         },
     });
 
+    //Load the actual window
     mainWindow.loadFile('index.html');
 
+    //Attach event handlers to server-side functions here
     ipcMain.handle('TestGiftsJSON', () => GiftList());
 })
 
