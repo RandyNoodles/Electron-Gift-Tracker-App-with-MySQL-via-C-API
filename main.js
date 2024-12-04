@@ -9,7 +9,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import { GiftList } from './MainScripts/testJSON.js';
 import { MySQLAPI } from './MainScripts/APICalls.js';
 
 
@@ -30,8 +29,17 @@ app.on('ready', ()=>{
     //Load the actual window
     mainWindow.loadFile('index.html');
 
-    //Attach event handlers to server-side functions here
-    ipcMain.handle('TestGiftsJSON', () => GiftList());
+    //Attach event handler to client-side API call
+    //SEE preload.js
+    ipcMain.handle('MySQLAPI', async (args) => {
+        try {
+            const result = await MySQLAPI(args);
+            return {success: true, output: result.output};
+        }
+        catch (error){
+            return {success: false, error: error.output};
+        }
+    });
 })
 
 

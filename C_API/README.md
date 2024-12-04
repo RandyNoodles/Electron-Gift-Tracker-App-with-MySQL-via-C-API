@@ -16,6 +16,7 @@ Priority:
 
 | Command Name       | Value | ArgList                                       |
 |--------------------|-------|-----------------------------------------------|
+| TEST JSON OUTPUT	 | -2    | ???											 |
 | INVALID            | -1    | ???                                           |
 | USER_LOGIN         | 0     | username, password                            |
 | GET_GIFTS          | 1     | userID                                        |
@@ -42,3 +43,4 @@ Priority:
 | DELETE_EVENT       | 22    | eventID                                       |
 | DELETE_CATEGORY    | 23    | categoryID                                    |
 | DELETE_LOCATION    | 24    | locationID                                    |
+

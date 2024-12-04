@@ -7,6 +7,22 @@ function init(){
 }
 
 
+async function callDatabase(args){
+    try{
+        const response = await window.db.CallDB(args);
+
+        if(response.success){
+            //do stuff
+        }
+        else{
+            //Do error stuff
+        }
+    }
+    catch (error){
+        //Bigger error stuff
+    }
+}
+
 async function LoadGiftTable(){
     const response = await window.testJSON.getGifts();
     const tableContainer = document.getElementById('table-container');
