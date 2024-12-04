@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 
 
 export function MySQLAPI(args){
-    const exePath = './C_API.exe'
+    const exePath = './C_API/C_API.exe'
 
     return new Promise((resolve, reject) =>{
         //Build command string

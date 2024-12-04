@@ -81,7 +81,8 @@ int main(int argc, char* argv[]) {
 
     if (command == TEST) {
         fprintf(stderr, "Error log here");
-        return 0;
+        printf("This will be ignored.");
+        return EXIT_FAILURE;
     }
 
 

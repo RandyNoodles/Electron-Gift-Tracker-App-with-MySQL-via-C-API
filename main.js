@@ -35,7 +35,8 @@ app.on('ready', ()=>{
         try {
             const result = await MySQLAPI(args);
             
-            if(!result.success){//Edge case where we wrote to stderr but ExitCode was 0
+            //Edge case where we wrote to stderr but ExitCode was 0
+            if(!result.success){
                 return {success: false, output: result.api_output};
             }
             
