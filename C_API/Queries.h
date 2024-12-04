@@ -2,9 +2,6 @@
 #include "Utils.h"
 
 
-#define QUERY_FAILURE -1
-#define NO_RESULT -2
-
 //Login
 int UserLogin(MYSQL* conn, char* username, char* password);
 

@@ -4,22 +4,25 @@ window.addEventListener("load", init);
 
 function init(){
     document.getElementById('loadGifts').addEventListener('click', LoadGiftTable);
+    document.getElementById('testAPI').addEventListener('click', callDatabase);
 }
 
 
-async function callDatabase(args){
+async function callDatabase(){
+
+    let args = ['-2'];
     try{
         const response = await window.db.CallDB(args);
 
         if(response.success){
-            //do stuff
+            document.getElementById('testOutput').innerText = response.output;
         }
         else{
-            //Do error stuff
+            document.getElementById('testOutput').innerText = "API error: ".concat(response.output);
         }
-    }
-    catch (error){
-        //Bigger error stuff
+    } catch (error){
+
+        document.getElementById('testOutput').innerText = "Failed to call node.js backend: ".concat(response.output);
     }
 }
 

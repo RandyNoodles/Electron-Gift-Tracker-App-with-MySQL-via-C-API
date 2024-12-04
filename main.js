@@ -31,13 +31,20 @@ app.on('ready', ()=>{
 
     //Attach event handler to client-side API call
     //SEE preload.js
-    ipcMain.handle('MySQLAPI', async (args) => {
+    ipcMain.handle('MySQLAPI', async (event, args) => {
         try {
             const result = await MySQLAPI(args);
-            return {success: true, output: result.output};
+            
+            if(!result.success){//Edge case where we wrote to stderr but ExitCode was 0
+                return {success: false, output: result.api_output};
+            }
+            
+            //Exit code 0
+            return {success: true, output: result.api_output};
         }
+        //Exit Code non-zero
         catch (error){
-            return {success: false, error: error.output};
+            return {success: false, output: error.api_output};
         }
     });
 })

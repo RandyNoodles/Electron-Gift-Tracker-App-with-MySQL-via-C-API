@@ -8,6 +8,11 @@
 #define INVALID_ARG 1
 #define SUCCESS 0
 
+#define QUERY_FAILURE -1
+#define NO_RESULT -2
+
+
+
 int ParseInt(char* arg, int* rValue);
 
 

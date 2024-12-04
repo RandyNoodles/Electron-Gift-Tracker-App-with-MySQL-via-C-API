@@ -44,7 +44,7 @@ int ResultToJSON(MYSQL_RES* result, char* jsonBuffer) {
 	strcpy(jsonBuffer, "[\n");
 
 	int rowCount = 0;
-	while ((row = mysql_fetch_rows(result)) != NULL) {
+	while ((row = mysql_fetch_row(result)) != NULL) {
 		//Append commas between each row
 		if (rowCount > 0) {
 			strcat(jsonBuffer, ",\n");
