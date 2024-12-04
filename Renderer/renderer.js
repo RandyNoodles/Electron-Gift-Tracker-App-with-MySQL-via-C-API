@@ -41,4 +41,3 @@ function createTableFromJSON(data) {
 
     return table;
 }
-
