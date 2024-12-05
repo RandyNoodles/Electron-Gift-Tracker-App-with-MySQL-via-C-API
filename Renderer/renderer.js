@@ -11,10 +11,10 @@ function init(){
 //BASIC ANATOMY OF A DB CALL
 //
 async function callDatabase(){
-    let args = ['-2']//TEST COMMAND
+    let args = ['200', 'TestFromRenderer', 120, 1, null, null, null];//TEST COMMAND
     try{
         //Actual database call
-        const response = await window.db.CallDB(args);
+        const response = await window.backend.CallDB(args);
 
         //response.success means you have good stuff from stdout
         if(response.success){
@@ -36,12 +36,10 @@ async function callDatabase(){
 
 async function LoadGiftTable(){
     let args = ['100', '1'];
-    const response = await window.db.CallDB(args);
+    const response = await window.backend.CallDB(args);
     const tableContainer = document.getElementById('table-container');
 
     tableContainer.innerHTML = "";
-
-
 
     if(response.success){
         let table;

@@ -6,9 +6,6 @@ int main(int argc, char* argv[]) {
 	const char* username = "root";
 	const char* password = "root";
 	const char* defaultDatabase = "gifttracker";
-    
-    printf("ArgC = %d", argc);
-
 
     //Check for ZERO args
 	if (argc <= 1) {
@@ -32,6 +29,7 @@ int main(int argc, char* argv[]) {
 		fprintf(stderr, "mysql_real_connect failed to connect to the MySQL Server.");
 		return EXIT_FAILURE;
 	}
+
 
 //-----------------------------------------------------------------------------------------------------------------
     //MAIN SWITCH

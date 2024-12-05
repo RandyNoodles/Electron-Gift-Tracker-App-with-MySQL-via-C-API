@@ -8,7 +8,6 @@ import { fileURLToPath } from 'url';
 //Workaround for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 import { MySQLAPI } from './MainScripts/APICalls.js';
 
 
@@ -23,6 +22,7 @@ app.on('ready', ()=>{
             contextIsolation: true,
             enableRemoteModule: false,
             nodeIntegration: false,
+            nodeIntegration: true
         },
     });
 
@@ -34,12 +34,10 @@ app.on('ready', ()=>{
     ipcMain.handle('MySQLAPI', async (event, args) => {
         try {
             const result = await MySQLAPI(args);
-            
             //Edge case where we wrote to stderr but ExitCode was 0
             if(!result.success){
                 return {success: false, output: result.api_output};
             }
-            
             //Exit code 0
             return {success: true, output: result.api_output};
         }

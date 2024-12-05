@@ -1,0 +1,6 @@
+These should be small HTML snippets -> tables, sections, etc.
+
+They can be accessed by the front end to show different "screens".
+
+
+To load get the content of one of these HTML files call "backend.LoadHTML(name)"

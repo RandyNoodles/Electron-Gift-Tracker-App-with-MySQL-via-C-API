@@ -5,14 +5,6 @@ int AddGift(MYSQL* conn, char* name, char* cost,
 	char* statusID, char* recipientID, char* eventID, char* locationID) {
 	char query[QUERY_BUFFER];
 
-	printf("QUERY:\n"
-		"INSERT INTO gift "
-		"(`Name`, Cost, StatusID, RecipientID, EventID, LocationID) "
-		"VALUES "
-		"('%s', %s, %s, %s, %s, %s);\n",
-		name, cost, statusID, recipientID, eventID, locationID);
-
-
 	sprintf(query,
 		"INSERT INTO gift "
 		"(`Name`, Cost, StatusID, RecipientID, EventID, LocationID) "
