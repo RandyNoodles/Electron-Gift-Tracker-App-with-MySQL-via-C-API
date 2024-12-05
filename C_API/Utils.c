@@ -1,6 +1,62 @@
 #include "Utils.h"
 #pragma warning(disable: 4996)
 
+int IsUDouble(char* arg) {
+	double temp;
+
+	char validChars[] = ".0123456789\0";
+
+	//Make sure we can scanf it.
+	if (sscanf(arg, "%lf", &temp) != 1) {
+		return INVALID_ARG;
+	}
+
+	//Loop through and make sure there's no extra non-numeric chars.
+	bool valid = false;
+	for (int i = 0; i < strlen(arg); i++) {
+		for (int k = 0; k < strlen(validChars); k++) {
+			if (arg[i] == validChars[k]) {
+				valid = true;
+				break;
+			}
+		}
+
+		if (!valid) {
+			return INVALID_ARG;
+		}
+		valid = false;
+	}
+	return SUCCESS;
+}
+
+int IsUInt(char* arg) {
+	int result;
+	int temp;
+	
+	result = ParseInt(arg, &temp);
+	if (result != SUCCESS) {
+		return INVALID_ARG;
+	}
+	if (temp < 0) {
+		return INVALID_ARG;
+	}
+	return SUCCESS;
+
+}
+int IsNull(char* arg) {
+
+	char targetValue[] = "null";
+
+	for (int i = 0; i < strlen(arg); i++) {
+		arg[i] = tolower(arg[i]);
+		if (arg[i] != targetValue[i]) {
+			return INVALID_ARG;
+		}
+	}
+	return SUCCESS;
+}
+
+
 void PrintSQLError(MYSQL* conn, const char* functionName) {
 	fprintf(stderr, "%s failed|Error: %u: %s",
 		functionName, mysql_errno(conn), mysql_error(conn));

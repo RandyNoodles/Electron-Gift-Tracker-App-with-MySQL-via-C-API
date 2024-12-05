@@ -133,12 +133,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Queries_ADD.c" />
     <ClCompile Include="C_API.c" />
-    <ClCompile Include="Queries.c" />
+    <ClCompile Include="Queries_DELETE.c" />
+    <ClCompile Include="Queries_GET.c" />
+    <ClCompile Include="Queries_OTHER.c" />
+    <ClCompile Include="Queries_UPDATE.c" />
     <ClCompile Include="Utils.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Queries.h" />
+    <ClInclude Include="C_API.h" />
+    <ClInclude Include="Queries_OTHER.h" />
+    <ClInclude Include="Queries_ADD.h" />
+    <ClInclude Include="Queries_DELETE.h" />
+    <ClInclude Include="Queries_GET.h" />
+    <ClInclude Include="Queries_UPDATE.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

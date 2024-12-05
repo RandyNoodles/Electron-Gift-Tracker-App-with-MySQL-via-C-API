@@ -1,6 +1,5 @@
-#include "Queries.h"
+#include "Queries_OTHER.h"
 #pragma warning(disable: 4996)
-
 
 
 int UserLogin(MYSQL* conn, char* username, char* password) {
@@ -47,13 +46,7 @@ int UserLogin(MYSQL* conn, char* username, char* password) {
 	return userId;
 }
 
-int NewUser(MYSQL* conn, char* username, char* password,
-	char* firstName, char* lastName, char* email, char* phoneNumber) {
 
-
-
-
-}
 
 
 

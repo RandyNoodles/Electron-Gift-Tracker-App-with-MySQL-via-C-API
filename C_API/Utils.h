@@ -1,5 +1,4 @@
 #pragma once
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,9 +11,23 @@
 #define NO_RESULT -2
 
 
+//ALL FUNCTIONS IN THIS SECTION RETURN:
+//SUCCESS or INVALID_ARG
 
-int ParseInt(char* arg, int* rValue);
 
+int IsUDouble(char* arg);//Checks for positive double
+int IsUInt(char* arg);//Checks for positive int
+
+int IsNull(char* arg);//Checks if string == "null" (any case)
+						//NOTE: turns 'arg' lowercase.
+
+
+int ParseInt(char* arg, int* rValue);//Parsed int is stored in rValue
+
+
+
+//Prints "functionName: <sql error>" to stderr
+void PrintSQLError(MYSQL* conn, const char* functionName);
 
 
 #define JSON_FAILURE -1

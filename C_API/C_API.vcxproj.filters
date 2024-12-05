@@ -21,7 +21,19 @@
     <ClCompile Include="Utils.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Queries.c">
+    <ClCompile Include="Queries_OTHER.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Queries_GET.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Queries_ADD.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Queries_DELETE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Queries_UPDATE.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +41,22 @@
     <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Queries.h">
+    <ClInclude Include="Queries_OTHER.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Queries_ADD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Queries_GET.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Queries_UPDATE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Queries_DELETE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C_API.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

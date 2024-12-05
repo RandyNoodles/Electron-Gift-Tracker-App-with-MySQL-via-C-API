@@ -1,46 +1,63 @@
 # API USAGE
 
+## ARGLIST
+
+NOTE: argv[0] is set automatically when C_API.exe is called.
+In the context of Javascript and args[] it DOES NOT EXIST.
+
+| Argv[x]	| Usage					|
+|---------	|-----------------------|
+| 0			| Program name			|
+| 1			| CommandEnum			|
+| 2			| Used in ALL commands	|
+| 3 -> 9	| Used in SOME commands	|
+
 ## NULL args
-Pass -1 in the event of a null arg.
+Pass the string 'null' in the event of a null arg.
 
-## Command Arg
-When calling C_API.exe, arg1 is always the command, an int indicating the operation to complete.
+In javascript, the value *null* will convert to this automatically when calling C_API.exe.
 
-Priority:
-- Login
-- Get gift list
-- Add new gift
-  - Get recipients (for the dropdown)
-- Delete gift
+## CommandEnums & Arglists
+
+| CommandEnum       | Value | Argv[2] -> Argv[9]                            |
+|-------------------|-------|-----------------------------------------------|
+| TEST              | -2    | ???                                           |
+| INVALID           | -1    | ???                                           |
+| USER_LOGIN        | 0     | username, password                            |
+| GET_GIFTS         | 100   | userID                                        |
+| GET_EVENTS        | 101   | userID                                        |
+| GET_RECIPIENTS    | 102   | userID                                        |
+| GET_STATUSES      | 103   | userID                                        |
+| GET_CATEGORIES    | 104   | userID                                        |
+| GET_LOCATIONS     | 105   | userID                                        |
+| ADD_GIFT          | 200   | name, cost, statusID, recipientID, eventID, locationID |
+| ADD_EVENT         | 201   | name, userID                                  |
+| ADD_RECIPIENT     | 202   | firstName, lastName, dateOfBirth              |
+| ADD_CATEGORY      | 203   | name                                          |
+| ADD_LOCATION      | 204   | name, address                                 |
+| ADD_USER          | 205   | username, password, firstName, lastName, email, phone# |
+| UPDATE_GIFT       | 300   | giftID, name, cost, statusID, recipientID, eventID, locationID |
+| UPDATE_EVENT      | 301   | eventID, name                                 |
+| UPDATE_RECIPIENT  | 302   | recipientID, firstName, lastName              |
+| UPDATE_CATEGORY   | 303   | categoryID, name                              |
+| UPDATE_LOCATION   | 304   | locationID, name, address                     |
+| DELETE_GIFT       | 400   | giftID                                        |
+| DELETE_EVENT      | 401   | eventID                                       |
+| DELETE_RECIPIENT  | 402   | recipientID                                   |
+| DELETE_STATUS     | 403   | statusID                                      |
+| DELETE_CATEGORY   | 404   | categoryID                                    |
+| DELETE_LOCATION   | 405   | locationID                                    |
+| DELETE_USER       | 406   | userID                                        |
 
 
-| Command Name       | Value | ArgList                                       |
-|--------------------|-------|-----------------------------------------------|
-| TEST JSON OUTPUT	 | -2    | ???											 |
-| INVALID            | -1    | ???                                           |
-| USER_LOGIN         | 0     | username, password                            |
-| GET_GIFTS          | 1     | userID                                        |
-| GET_RECIPIENTS     | 2     | userID                                        |
-| GET_STATUSES       | 3     | userID                                        |
-| GET_EVENTS         | 4     | userID                                        |
-| GET_CATEGORIES     | 5     | userID                                        |
-| GET_LOCATIONS      | 6     | userID                                        |
-| ADD_USER           | 7     | username, password, firstName, lastName, email, phone# |
-| ADD_GIFT           | 8     | name, cost, statusID, recipientID, eventID, locationID |
-| ADD_EVENT          | 9     | name, userID                                          |
-| ADD_EVENTCATEGORY  | 10    | name                                          |
-| ADD_LOCATION       | 11    | name, address                                 |
-| ADD_RECIPIENT      | 12    | firstName, lastName, dateOfBirth              |
-| UPDATE_GIFT        | 13    | giftID, name, cost, statusID, recipientID, eventID, locationID |
-| UPDATE_EVENT       | 14    | eventID, name                                 |
-| UPDATE_CATEGORY    | 15    | categoryID, name                              |
-| UPDATE_LOCATION    | 16    | locationID, name, address                     |
-| UPDATE_RECIPIENT   | 17    | recipientID, firstName, lastName              |
-| DELETE_USER        | 18    | userID                                        |
-| DELETE_GIFT        | 19    | giftID                                        |
-| DELETE_RECIPIENT   | 20    | recipientID                                   |
-| DELETE_STATUS      | 21    | statusID                                      |
-| DELETE_EVENT       | 22    | eventID                                       |
-| DELETE_CATEGORY    | 23    | categoryID                                    |
-| DELETE_LOCATION    | 24    | locationID                                    |
+## Return Values
 
+| CommandEnum		| OnSuccess			| OnFailure		|
+|---------------	|---------------	|---------------|
+| TEST				| ???				| ???			|
+| INVALID_COMMAND	| <N/a>				| stderr string |
+| USER_LOGIN		| { UserID: %d }	| stderr string |
+| GET				| JsonArray			| stderr string |
+| Add				| {AddedItemID: %d}	| stderr string |
+| UPDATE		    | stdout string		| stderr string |
+| DELETE			| stdout string		| stderr string |

@@ -7,36 +7,89 @@ function init(){
     document.getElementById('testAPI').addEventListener('click', callDatabase);
 }
 
-
+//
+//BASIC ANATOMY OF A DB CALL
+//
 async function callDatabase(){
-
-    let args = ['-2'];
+    let args = ['-2']//TEST COMMAND
     try{
+        //Actual database call
         const response = await window.db.CallDB(args);
 
+        //response.success means you have good stuff from stdout
         if(response.success){
             document.getElementById('testOutput').innerText = response.output;
         }
+        //!response.success means there was something in stderr, OR the exit code was non-zero.
         else{
             document.getElementById('testOutput').innerText = "API error: ".concat(response.output);
         }
+    //This will mean the call never reached the backend/MySQLAPI()
     } catch (error){
 
         document.getElementById('testOutput').innerText = "Failed to call node.js backend: ".concat(response.output);
     }
 }
 
+
+
+
 async function LoadGiftTable(){
-    const response = await window.testJSON.getGifts();
+    let args = ['100', '1'];
+    const response = await window.db.CallDB(args);
     const tableContainer = document.getElementById('table-container');
 
-    const table = createTableFromJSON(response);
-    tableContainer.appendChild(table);
+    tableContainer.innerHTML = "";
+
+
+
+    if(response.success){
+        let table;
+        try{
+            formattedResponse = JSON.parse(response.output);
+            table = createTableFromJSON(formattedResponse);
+            tableContainer.appendChild(table);
+        }catch(formatErr){
+            tableContainer.innerHTML = "Failed to parse response JSON: ".concat(formatErr);
+        }
+    }
+    else{
+        tableContainer.innerHTML = "<p>Error loading gift list: ".concat(response.output);
+    }
 }
+
+function CreateTableFromJSON(jsonData){
+    let table = document.createElement("table");
+    let columns = Object.keys(jsonData[0]);
+
+    let tHead = document.createElement("thead");
+    let tr = document.createElement("tr");
+
+    columns.forEach((item) => {
+        let th = document.createElement("th");
+        th.innerText = item;
+        tr.appendChild(th);
+    });
+    tHead.appendChild(tr);
+    table.append(tr);
+
+    jsonData.forEach((item) =>{
+        let vals = Object.values(item);
+
+        vals.forEach((elem) =>{
+            let td = document.createElement("td");
+            td.innerText = elem;
+            tr.appendChild(td);
+        });
+        table.appendChild(tr);
+    });
+
+    return table;
+}
+
 
 function createTableFromJSON(data) {
     const table = document.createElement('table');
-    table.border = '1';
 
     // Create table header
     const thead = table.createTHead();

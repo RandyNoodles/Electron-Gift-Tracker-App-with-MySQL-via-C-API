@@ -5,8 +5,9 @@ It takes in a bunch of command line args. Argv[1] is always an integer represent
 the command to execute.
 It takes that integer and just goes through a giant switch statement of "What function do I call".
 
-Then it either uses printf("result") for good results
-or fprintf(stderr, "error") for errors.
+
+Then it either uses printf("result") to print good results to stdout.
+or fprintf(stderr, "error") to print errors to stderr.
 
 Electron detects which stream was written to, along with the exit code, and passes back:
 Success: <true OR false>
