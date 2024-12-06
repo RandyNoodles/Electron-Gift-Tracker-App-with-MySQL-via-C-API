@@ -200,22 +200,22 @@ int main(int argc, char* argv[]) {
     else if (command >= 300 && command < 400) {
         switch (command) {
         case UPDATE_GIFT:
-            // Handle UPDATE_GIFT
+            //Handle UPDATE_GIFT
             break;
         case UPDATE_EVENT:
-            // Handle UPDATE_EVENT
+            //Handle UPDATE_EVENT
             break;
         case UPDATE_RECIPIENT:
-            // Handle UPDATE_RECIPIENT
+            //Handle UPDATE_RECIPIENT
             break;
         case UPDATE_CATEGORY:
-            // Handle UPDATE_CATEGORY
+            //Handle UPDATE_CATEGORY
             break;
         case UPDATE_LOCATION:
-            // Handle UPDATE_LOCATION
+            //Handle UPDATE_LOCATION
             break;
         default:
-            // Handle unknown UPDATE command
+            //Handle unknown UPDATE command
             break;
         }
     }

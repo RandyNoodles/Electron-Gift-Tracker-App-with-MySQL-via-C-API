@@ -1,7 +1,7 @@
-import { spawn } from 'child_process';
+const { spawn } = require('child_process');
+module.exports = MySQLAPI;
 
-
-export function MySQLAPI(args){
+function MySQLAPI(args){
     const exePath = './C_API/C_API.exe'
 
     return new Promise((resolve, reject) =>{

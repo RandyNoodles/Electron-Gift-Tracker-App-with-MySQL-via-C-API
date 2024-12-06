@@ -1,16 +1,14 @@
 //THIS IS BASICALLY SERVER-SIDE CODE
 
-//Load app & BrowserWindow modules
-import { app, BrowserWindow, ipcMain } from 'electron/main';
-//Load path module to concatenate paths later
-import path from 'path';
-import { fileURLToPath } from 'url';
-//Workaround for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-import { MySQLAPI } from './MainScripts/APICalls.js';
-
-
+//Main electron stuff for spawning window, and inter-process communication
+const { app, BrowserWindow, ipcMain } = require('electron');
+//Supporting functions
+const MySQLAPI = require('./MainScripts/APICalls.js');
+//Filesystem access
+const fs = require('fs');
+//Path stuff for grabbing my preload script.
+//Helps make it more explicit? Was recommended, idk why relative isn't good enough.
+const path = require('path'); 
 
 let mainWindow;
 
@@ -22,7 +20,6 @@ app.on('ready', ()=>{
             contextIsolation: true,
             enableRemoteModule: false,
             nodeIntegration: false,
-            nodeIntegration: true
         },
     });
 
@@ -46,7 +43,18 @@ app.on('ready', ()=>{
             return {success: false, output: error.api_output};
         }
     });
-})
+    ipcMain.handle('LoadHTML', (event, name) =>{
+        try{
+            const filePath = "./HTMLSections/".concat(name);
+            const fullPath = path.resolve(__dirname, filePath);
+            let fileContent = fs.readFileSync(fullPath, 'utf-8');
+            return { success: true, output: fileContent};
+        } catch(error){
+            console.log("Error reading file: ", error);
+            return {success: false, output: error};
+        }
+    });
+});//End app.onReady()
 
 
 
@@ -56,12 +64,12 @@ app.on('ready', ()=>{
     //with that.
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-        createWindow()
+        createWindow();
     }
 });
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
     }
-});
+})
