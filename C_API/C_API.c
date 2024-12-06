@@ -7,6 +7,7 @@ int main(int argc, char* argv[]) {
 	const char* password = "root";
 	const char* defaultDatabase = "gifttracker";
 
+
     //Check for ZERO args
 	if (argc <= 1) {
 		fprintf(stderr, "Invalid args. At minimum <commandEnum> is required.");

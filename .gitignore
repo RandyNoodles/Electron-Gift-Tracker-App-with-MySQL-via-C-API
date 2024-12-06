@@ -138,7 +138,6 @@ dist
 # C STUFF
 
 
-
 # Prerequisites
 *.d
 
@@ -191,3 +190,17 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+# Exclude Visual Studio build artifacts
+*.tlog
+*.lastbuildstate
+
+# Exclude Debug and Release folders
+x64/Debug/
+x64/Release/
+Debug/
+Release/
+
+C_API/C_API/x64/Debug/
+C_API/C_API/x64/Release/
