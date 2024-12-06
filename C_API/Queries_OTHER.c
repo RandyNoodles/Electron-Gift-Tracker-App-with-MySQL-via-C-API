@@ -2,6 +2,37 @@
 #pragma warning(disable: 4996)
 
 
+int ItemExists(MYSQL* conn, char* tableName, char* itemID) {
+	char query[QUERY_BUFFER];
+	sprintf(query,
+		"SELECT * FROM `%s` WHERE %sID = %s",
+		tableName, tableName, itemID);
+
+
+	if (mysql_query(conn, query) != 0) {
+		char functionName[QUERY_BUFFER];
+		sprintf(functionName, "ItemExists(Table::%s, ID::%s)", tableName, itemID);
+
+		PrintSQLError(conn, functionName);
+		return QUERY_FAILURE;
+	}
+
+	MYSQL_RES* result = mysql_store_result(conn);
+	if (result == NULL) {
+		char functionName[QUERY_BUFFER];
+		sprintf(functionName, "ItemExists(Table::%s, ID::%s)", tableName, itemID);
+
+		PrintSQLError(conn, functionName);
+		return QUERY_FAILURE;
+	}
+
+	if (mysql_num_rows(result) == 0) {
+		return NO_RESULT;
+	}
+
+	return SUCCESS;
+}
+
 int UserLogin(MYSQL* conn, char* username, char* password) {
 	char query[200];
 	sprintf(query,

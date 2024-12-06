@@ -52,7 +52,16 @@ int main(int argc, char* argv[]) {
     }
     ///////////////
     //GET COMMANDS
+    //
+    //1. Validate arg count
+    //2. Parse User ID
+    //3.  -> Call GET function
+    //4. If successful, allocate JSON buffer
+    //5. Convert result to JSON
+    //6. Print JSON result
+
     else if (command >= 100 && command < 200) {
+
         if (argc != 3) {
             fprintf(stderr, "Invalid command count. All GET commands require <arg[1]: Command> <arg[2]: UserID>");
             return EXIT_FAILURE;
@@ -69,16 +78,16 @@ int main(int argc, char* argv[]) {
                 queryResult = GetGifts(conn, userID);
                 break;
             case GET_EVENTS:
-                // Handle GET_EVENTS
+                queryResult = GetEvents(conn, userID);
                 break;
             case GET_RECIPIENTS:
-                // Handle GET_RECIPIENTS
+                queryResult = GetRecipients(conn, userID);
                 break;
             case GET_STATUSES:
-                // Handle GET_STATUSES
+                queryResult = GetStatuses(conn, userID);
                 break;
             case GET_CATEGORIES:
-                // Handle GET_CATEGORIES
+                //Handle GET_CATEGORIES
                 break;
             case GET_LOCATIONS:
                 // Handle GET_LOCATIONS
@@ -89,23 +98,19 @@ int main(int argc, char* argv[]) {
         
         //Handle results of the GET query
         if (queryResult == NULL) {
-            (conn, "SQL result == NULL: ");
+            PrintSQLError(conn, "SQL result == NULL: ");
             return EXIT_FAILURE;
         }
-        
-        //If empty, send blank array.
-        if (mysql_num_rows(queryResult) == 0) {
-            printf("[]");
-            return SUCCESS;
-        }        
         //Else, convert result to JSON and print to stdout
         char* jsonBuffer = (char*)malloc(JSON_BUFFER);
         if (jsonBuffer == NULL) {
             fprintf(stderr, "json buffer failed to allocate.");
+            free(queryResult);
             return EXIT_FAILURE;
         }
         else {
-            if (ResultToJSON(queryResult, jsonBuffer) == SUCCESS) {
+            int jsonStatus = ResultToJSON(queryResult, jsonBuffer);
+            if (jsonStatus != JSON_FAILURE) {
                 printf(jsonBuffer);
             }
             else {
@@ -123,6 +128,11 @@ int main(int argc, char* argv[]) {
 
     ///////////////
     //ADD COMMANDS
+    //
+    //1. Branch to command
+    //2. Validate arg count for that command
+    //3. -> Call add function
+    //4. If successful, print {AddedItemID: <itemId>}
     else if (command >= 200 && command < 300) {
 
         int addedItemID = QUERY_FAILURE;
@@ -197,6 +207,11 @@ int main(int argc, char* argv[]) {
 
     //////////////////
     //UPDATE COMMANDS
+    //
+    //1. Branch to command
+    //2. Validate arg count for that command
+    //3. -> Call Update function
+    //4. If successful printf {UpdatedItemID: <itemID>}
     else if (command >= 300 && command < 400) {
         switch (command) {
         case UPDATE_GIFT:
@@ -222,6 +237,11 @@ int main(int argc, char* argv[]) {
 
     //////////////////
     //DELETE COMMANDS
+    //
+    //1. Branch to command
+    //2. Validate arg count for that command
+    //3. -> Call Update function
+    //4. If successful printf {UpdatedItemID: <itemID>}
     else if (command >= 400 && command < 500) {
         switch (command) {
         case DELETE_GIFT:
@@ -232,9 +252,6 @@ int main(int argc, char* argv[]) {
             break;
         case DELETE_RECIPIENT:
             // Handle DELETE_RECIPIENT
-            break;
-        case DELETE_STATUS:
-            // Handle DELETE_STATUS
             break;
         case DELETE_CATEGORY:
             // Handle DELETE_CATEGORY
