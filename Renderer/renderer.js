@@ -48,9 +48,6 @@ async function callDatabase(){
     }
 }
 
-
-
-
 async function LoadGiftTable(){
     let args = ['100', '1'];
     const response = await window.backend.CallDB(args);
