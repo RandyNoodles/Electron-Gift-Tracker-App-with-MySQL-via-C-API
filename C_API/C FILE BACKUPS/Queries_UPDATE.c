@@ -18,7 +18,7 @@ int UpdateGift(MYSQL* conn, char* giftID, char* name, char* cost,
 	char query[QUERY_BUFFER];
 	sprintf(query,
 		"UPDATE gift SET "
-		"`Name` = %s, "
+		"`Name` = '%s', "
 		"Cost = %s, "
 		"StatusID = %s, "
 		"RecipientID = %s, "
@@ -56,8 +56,8 @@ int UpdateEvent(MYSQL* conn, char* eventID, char* name, char* date, char* catego
 	char query[QUERY_BUFFER];
 	sprintf(query,
 		"UPDATE event SET "
-		"`Name` = %s, "
-		"`Date` = %s, "
+		"`Name` = '%s', "
+		"`Date` = '%s', "
 		"CategoryID = %s, "
 		"WHERE EventID = %s AND UserID = %s; ",
 		name, date, categoryID, eventID, userID);
@@ -84,9 +84,9 @@ int UpdateRecipient(MYSQL* conn, char* recipientID, char* firstName, char* lastN
 	char query[QUERY_BUFFER];
 	sprintf(query,
 		"UPDATE recipient SET "
-		"FirstName = %s, "
-		"LastName = %s, "
-		"DateOfBirth = %s "
+		"FirstName = '%s', "
+		"LastName = '%s', "
+		"DateOfBirth = '%s' "
 		"WHERE RecipientID = %s AND UserID = %s;",
 		firstName, lastName, dateOfBirth, recipientID, userID);
 
@@ -119,9 +119,9 @@ int UpdateCategory(MYSQL* conn, char* categoryID, char* name) {
 	char query[QUERY_BUFFER];
 	sprintf(query,
 		"UPDATE recipient SET "
-		"`Name` = %s "
+		"`Name` = '%s' "
 		"WHERE categoryID = %d;",
-		name, categoryID);
+		name, categoryID;
 
 	if (mysql_query(conn, query) != 0)
 	{
@@ -152,9 +152,9 @@ int UpdateLocation(MYSQL* conn, char* locationID, char* name, char* webAddress, 
 	char query[QUERY_BUFFER];
 	sprintf(query,
 		"UPDATE purchaseLocation SET "
-		"`Name` = %s, "
-		"WebAddress = %s ",
-		"PhysicalLocation = %s "
+		"`Name` = '%s', "
+		"WebAddress = '%s' ",
+		"PhysicalLocation = '%s' "
 		"WHERE PurchaseLocationID = %d; ",
 		name, webAddress, physicalLocation, locationID);
 		

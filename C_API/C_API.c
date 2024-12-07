@@ -214,25 +214,59 @@ int main(int argc, char* argv[]) {
     //3. -> Call Update function
     //4. If successful printf {UpdatedItemID: <itemID>}
     else if (command >= 300 && command < 400) {
+        
+        int updateRowsAffected = QUERY_FAILURE;
+
         switch (command) {
-        case UPDATE_GIFT:
-            //Handle UPDATE_GIFT
-            break;
-        case UPDATE_EVENT:
-            //Handle UPDATE_EVENT
-            break;
-        case UPDATE_RECIPIENT:
-            //Handle UPDATE_RECIPIENT
-            break;
-        case UPDATE_CATEGORY:
-            //Handle UPDATE_CATEGORY
-            break;
-        case UPDATE_LOCATION:
-            //Handle UPDATE_LOCATION
-            break;
-        default:
-            //Handle unknown UPDATE command
-            break;
+            case UPDATE_GIFT:
+                if (argc != 9) {
+                    fprintf(stderr, "Invalid arg count for UPDATE_GIFT command.");
+                }
+                else {
+                    updateRowsAffected = UpdateGift(conn, argv[2], argv[3], argv[4],
+                        argv[5], argv[6], argv[7], argv[8]);
+                }
+                break;
+            case UPDATE_EVENT:
+                if (argc != 7) {
+                    fprintf(stderr, "Invalid arg count for UPDATE_EVENT command.");
+                }
+                else {
+                    updateRowsAffected = UpdateEvent(conn, argv[2], argv[3], argv[4],
+                        argv[5], argv[6]);
+                }
+                break;
+            case UPDATE_RECIPIENT:
+                if (argc != 7) {
+                    fprintf(stderr, "Invalid arg count for UPDATE_RECIPIENT command.");
+                }
+                else {
+                    updateRowsAffected = UpdateRecipient(conn, argv[2], argv[3], argv[4],
+                        argv[5], argv[6]);
+                }
+                break;
+            case UPDATE_CATEGORY:
+                if (argc != 4) {
+                    fprintf(stderr, "Invalid arg count for UPDATE_CATEGORY command.");
+                }
+                else {
+                    updateRowsAffected = UpdateCategory(conn, argv[2], argv[3]);
+                }
+                break;
+            case UPDATE_LOCATION:
+                if (argc != 6) {
+                    fprintf(stderr, "Invalid arg count for UPDATE_LOCATION command.");
+                }
+                else {
+                    updateRowsAffected = UpdateLocation(conn, argv[2], argv[3], argv[4], argv[5]);
+                }
+                break;
+            default:
+                fprintf(stderr, "Unrecognized UPDATE command: %d", command);
+                break;
+        }
+        if (updateRowsAffected != QUERY_FAILURE) {
+            printf("{RowsAffected: %d}", updateRowsAffected);
         }
     }
 
@@ -244,32 +278,35 @@ int main(int argc, char* argv[]) {
     //3. -> Call Update function
     //4. If successful printf {UpdatedItemID: <itemID>}
     else if (command >= 400 && command < 500) {
+
+        int deletionRowsAffected = QUERY_FAILURE;
+        
         switch (command) {
         case DELETE_GIFT:
-            // Handle DELETE_GIFT
+            deletionRowsAffected = DeleteGift(conn, argv[2]);
             break;
         case DELETE_EVENT:
-            // Handle DELETE_EVENT
+            deletionRowsAffected = DeleteGift(conn, argv[2]);
             break;
         case DELETE_RECIPIENT:
-            // Handle DELETE_RECIPIENT
+            deletionRowsAffected = DeleteGift(conn, argv[2]);
             break;
         case DELETE_CATEGORY:
-            // Handle DELETE_CATEGORY
+            deletionRowsAffected = DeleteGift(conn, argv[2]);
             break;
         case DELETE_LOCATION:
-            // Handle DELETE_LOCATION
+            deletionRowsAffected = DeleteGift(conn, argv[2]);
             break;
         case DELETE_USER:
-            // Handle DELETE_USER
+            deletionRowsAffected = DeleteGift(conn, argv[2]);
             break;
         default:
-            // Handle unknown DELETE command
+            fprintf(stderr, "Unrecognized DELETE command: %d", command);
             break;
         }
     }
     else {
-        fprintf(stderr, "Command not recognized.");
+        fprintf(stderr, "Command %d not recognized.", command);
     }
     
     mysql_close(conn);

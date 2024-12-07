@@ -9,7 +9,7 @@ int AddGift(MYSQL* conn, char* name, char* cost,
 		"INSERT INTO gift "
 		"(`Name`, Cost, StatusID, RecipientID, EventID, LocationID) "
 		"VALUES "
-		"(%s, %s, %s, %s, %s, %s);",
+		"('%s', %s, %s, %s, %s, %s);",
 		name, cost, statusID, recipientID, eventID, locationID);
 
 	if (mysql_query(conn, query) != 0) {
@@ -25,7 +25,7 @@ int AddEvent(MYSQL* conn, char* name, char* date, char* categoryID, char* userID
 	sprintf(query,
 		"INSERT INTO `event` (`Name`, `Date`, CategoryID, UserID) "
 		"VALUES "
-		"(%s, %s, %s, %s);",
+		"('%s', '%s', %s, %s);",
 		name, date, categoryID, userID);
 
 	if (mysql_query(conn, query) != 0) {
@@ -41,7 +41,7 @@ int AddRecipient(MYSQL* conn, char* firstName, char* lastName, char* dateOfBirth
 	sprintf(query,
 		"INSERT INTO recipient (FirstName, LastName, DateOfBirth, UserID) "
 		"VALUES "
-		"(%s, %s, %s, %s);",
+		"('%s', '%s', '%s', %s);",
 		firstName, lastName, dateOfBirth, userID);
 
 	if (mysql_query(conn, query) != 0) {
@@ -68,7 +68,7 @@ int AddUser(MYSQL* conn, char* username, char* password,
 	sprintf(query,
 		"INSERT INTO `user` (UserName, `Password`, FirstName, LastName, Email, PhoneNumber) "
 		"VALUES "
-		"(%s, %s, %s, %s, %s, %s);",
+		"('%s', '%s', '%s', '%s', '%s', '%s');",
 		username, password, firstName, lastName, email, phoneNumber);
 		
 
