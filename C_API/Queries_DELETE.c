@@ -18,6 +18,7 @@ int DeleteGift(MYSQL* conn, int giftID) {
 	//Return # of affected rows.
 	//1 = success
 	//2 = maybe no matching ID?
+	// Doesn't matter. If no matching ID, it shouldn't appear in UI anyways.
 	return mysql_affected_rows(conn);
 
 }
@@ -50,8 +51,13 @@ int DeleteRecipient(MYSQL* conn, int recipientID) {
 	return mysql_affected_rows(conn);
 }
 int DeleteCategory(MYSQL* conn, int categoryID) {
+	int result = IsUniversal(conn, "Category", categoryID);
+	if (result != NO_RESULT) {
+		fprintf(stderr, "Deletion of universal EventCategories not allowed.");
+		return QUERY_FAILURE;
+	}
+	
 	char query[QUERY_BUFFER];
-
 	sprintf(query,
 		"DELETE FROM category WHERE CategoryID = %d;",
 		categoryID);
@@ -64,8 +70,13 @@ int DeleteCategory(MYSQL* conn, int categoryID) {
 	return mysql_affected_rows(conn);
 }
 int DeleteLocation(MYSQL* conn, int locationID) {
-	char query[QUERY_BUFFER];
+	int result = IsUniversal(conn, "PurchaseLocation", locationID);
+	if (result != NO_RESULT) {
+		fprintf(stderr, "Deletion of universal purchaseLocations not allowed.");
+		return QUERY_FAILURE;
+	}
 
+	char query[QUERY_BUFFER]; 
 	sprintf(query,
 		"DELETE FROM purchaseLocation WHERE PurchaseLocationID = %d;",
 		locationID);
