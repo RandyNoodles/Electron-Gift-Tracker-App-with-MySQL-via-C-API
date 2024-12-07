@@ -6,7 +6,10 @@
 //Login
 int UserLogin(MYSQL* conn, char* username, char* password);
 
-int ItemExists(MYSQL* conn, char* tableName, char* id);
+
+//Return SUCCESS if true
+int ItemExists(MYSQL* conn, char* tableName, char* itemID);
+int IsUniversal(MYSQL* conn, char* tableName, char* itemID);
 
 
 

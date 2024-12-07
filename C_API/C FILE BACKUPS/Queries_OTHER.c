@@ -93,7 +93,7 @@ int IsUniversal(MYSQL* conn, char* tableName, char* itemID) {
 		char functionName[QUERY_BUFFER];
 		sprintf(functionName, "IsUniversal(Table::%s, ID::%s)", tableName, itemID);
 		PrintSQLError(conn, functionName);
-		return QUERY_FAILURE;
+		return NULL;
 	}
 
 	MYSQL_RES* result = mysql_store_result(conn);
