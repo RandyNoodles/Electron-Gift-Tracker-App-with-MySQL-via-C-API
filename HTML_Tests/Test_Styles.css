@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url("Resources/AdobeStock_1031406063_Preview.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav {
+    max-width: 800px;
+    width: 80%; /* Match the container width */
+    display: flex; /* Align buttons in a row */
+    justify-content: flex-end; /* Align buttons to the right */
+    margin: 20px auto 0 auto;
+    margin-bottom: 0px; /* Center and add space above the nav */
+    gap: 10px; /* Add space between buttons */
+}
+
+.navButton {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.navButton:hover {
+    background-color: #039e5b;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container h1 {
+    color: white;
+    font-size: 50px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.tableButtons {
+    display: flex; /* Align buttons in a row */
+    justify-content: flex-end; /* Align buttons to the right */
+    width: 80%; /* Match the table width */
+    margin: 0px auto; /* Center the buttons section */
+}
+
+.tableButtons button {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px; /* Add spacing between buttons */
+
+}
+
+.tableButtons button:hover {
+    background-color: #039e5b;
+}
+
+#table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto; /* Center the table */
+}
+
+#table td, #table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+#table tr:nth-child(odd) {
+    background-color: palegreen;
+}
+
+#table tr:hover {
+    background-color: orange;
+}
+
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.add_container {
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add_container h1 {
+    color: #04AA6D;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.add_container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add_container label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.add_container input,
+.add_container select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.add_container input:focus,
+.add_container select:focus {
+    border-color: #04AA6D;
+    outline: none;
+}
+
+.add_container button {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: center;
+    transition: background-color 0.3s ease;
+}
+
+.add_container button:hover {
+    background-color: #039e5b;
+}
