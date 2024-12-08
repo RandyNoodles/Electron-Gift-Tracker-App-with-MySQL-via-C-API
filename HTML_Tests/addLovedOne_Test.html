@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="Test_Styles.css">
+</head>
+<body>
+    
+    <nav class="nav">
+        <button type="button" class="navButton">Account</button>
+        <button type="button" class="navButton">Gifts</button>
+        <button type="button" class="navButton">Events</button>
+    </nav>
+    
+    <div class="add_container">
+        <h1>Add Loved One</h1>
+        <form id="addLovedOneForm">
+            <table>
+                <!-- Name Row -->
+                <tr>
+                    <td colspan="1"><label for="firstName">First Name</label></td>
+                    <td colspan="5"><input type="text" id="firstName" name="firstName" required></td>
+                </tr>
+                <tr>
+                    <td colspan="1"><label for="lastName">Last Name</label></td>
+                    <td colspan="5"><input type="text" id="lastName" name="lastName"></td>
+                </tr>
+                <tr>
+                    <td colspan="1"><label for="dateOfBirth">Date Of Birth</label></td>
+                    <td colspan="5"><input type="text" id="dateOfBirth" name="dateOfBirth"></td>
+                </tr>
+                <!-- Submit Button Row -->
+                <tr>
+                    <td colspan="3" style="text-align: center;">
+                        <button type="submit" class="navButton">Add Loved One</button>
+                    </td>
+                    <td colspan="3" style="text-align: center;">
+                        <button type="submit" class="navButton">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
