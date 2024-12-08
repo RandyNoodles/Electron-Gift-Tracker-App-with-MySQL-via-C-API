@@ -22,7 +22,6 @@ async function callRouter(){
     else{
         document.getElementById('testOutput').innerHTML = "ERR: ".concat(response.output);
     }
-
 }
 
 //
