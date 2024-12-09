@@ -37,7 +37,7 @@ int ItemExists(MYSQL* conn, char* tableName, char* itemID) {
 int UserLogin(MYSQL* conn, char* username, char* password) {
 	char query[200];
 	sprintf(query,
-		"SELECT userID FROM `user` WHERE username = '%s' AND `password` = '%s';",
+		"SELECT userID FROM `user` WHERE `username` = %s AND `password` = %s;",
 		username, password);
 
 	if (mysql_query(conn, query) != 0) {
@@ -61,8 +61,6 @@ int UserLogin(MYSQL* conn, char* username, char* password) {
 			strcpy(stringId, row[i] ? row[i] : "null");
 		}
 	}
-
-	free(result);
 
 	if (rowCount == 0) {
 		return NO_RESULT;

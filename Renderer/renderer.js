@@ -3,12 +3,24 @@
 window.addEventListener("load", init);
 
 function init(){
-
+    id('nav_Account').addEventListener('click', LoadPage_Account);
+    id('nav_Events').addEventListener('click', LoadPage_Events);
+    id('nav_LovedOnes').addEventListener('click', LoadPage_LovedOnes);
+    id('nav_Gifts').addEventListener('click', LoadPage_Gifts);
 }
 
+function LoadPage_Account(event){
 
+}
+function LoadPage_Events(event){
 
+}
+function LoadPage_LovedOnes(event){
 
+}
+function LoadPage_Gifts(event){
+
+}
 
 async function LoadGiftTable(){
     let args = ['100', '1'];
@@ -30,37 +42,4 @@ async function LoadGiftTable(){
     else{
         tableContainer.innerHTML = "<p>Error loading gift list: ".concat(response.output);
     }
-}
-
-function createTableFromJSON(data) {
-    const table = document.createElement('table');
-
-    // Create table header
-    const thead = table.createTHead();
-    const headerRow = thead.insertRow();
-    const headers = Object.keys(data[0]);
-    headers.forEach(header => {
-        const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
-    });
-
-    // Create table body
-    const tbody = table.createTBody();
-    data.forEach(row => {
-        const tr = tbody.insertRow();
-
-        headers.forEach(header => {
-
-            const td = tr.insertCell();
-            if(row[header] == null){
-                td.textContent = "";
-            }
-            else{
-                td.textContent = row[header];
-            }
-        });
-    });
-
-    return table;
 }

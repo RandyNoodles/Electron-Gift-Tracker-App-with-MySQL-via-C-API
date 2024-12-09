@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 
         int userId = QUERY_FAILURE;
         userId = UserLogin(conn, argv[2], argv[3]);
-        printf("{userID: %d}", userId);
+        printf("{\"userID\": % d }", userId);
     }
     ///////////////
     //GET COMMANDS
@@ -106,7 +106,6 @@ int main(int argc, char* argv[]) {
         char* jsonBuffer = (char*)malloc(JSON_BUFFER);
         if (jsonBuffer == NULL) {
             fprintf(stderr, "json buffer failed to allocate.");
-            free(queryResult);
             return EXIT_FAILURE;
         }
         else {
@@ -118,9 +117,6 @@ int main(int argc, char* argv[]) {
                 fprintf(stderr, "Failure parsing query results to JSON.");
             }
 
-            if (result != NULL) {
-                free(result);
-            }
             free(jsonBuffer);
             //Success.
         }
