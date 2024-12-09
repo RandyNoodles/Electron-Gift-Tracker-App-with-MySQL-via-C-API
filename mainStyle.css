@@ -30,6 +30,18 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.deleteButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
 .navButton:hover {
     background-color: #039e5b;
 }
@@ -102,6 +114,11 @@ body {
 
 #table tr:hover {
     background-color: orange;
+}
+
+#table tr.selected {
+    background-color: #04AA6D;
+    color: white;
 }
 
 #table th {

@@ -27,3 +27,5 @@ async function LoadGiftTable(){
         tableContainer.innerHTML = "<p>Error loading gift list: ".concat(response.output);
     }
 }
+
+
