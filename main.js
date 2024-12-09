@@ -28,7 +28,7 @@ app.on('ready', ()=>{
     });
 
     //Load the actual window
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile('./Pages/Login/Login.html');
     
 
     if(openWithDevConsole){
@@ -53,17 +53,6 @@ app.on('ready', ()=>{
             return {success: false, output: error.api_output};
         }
     });
-    ipcMain.handle('LoadHTML', (event, name) =>{
-        try{
-            const filePath = "./HTMLSections/".concat(name);
-            const fullPath = path.resolve(__dirname, filePath);
-            let fileContent = fs.readFileSync(fullPath, 'utf-8');
-            return { success: true, output: fileContent};
-        } catch(error){
-            console.log("Error reading file: ", error);
-            return {success: false, output: error};
-        }
-    });
 
     ipcMain.handle('LoadPage', (event, htmlFile) =>{
 
@@ -71,7 +60,7 @@ app.on('ready', ()=>{
         if(currentWindow){
             currentWindow.loadFile(path.join(__dirname, htmlFile));
         }
-    })
+    });
 });//End app.onReady()
 
     //This is mac-specific stuff.

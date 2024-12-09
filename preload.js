@@ -9,15 +9,17 @@ contextBridge.exposeInMainWorld('backend', {
     CallDB: async (args) => {
       return await ipcRenderer.invoke('MySQLAPI', args);
     },
-    //FOR SPA APPROACH
-    LoadHTML:  (name) =>{
-      return ipcRenderer.invoke('LoadHTML', name);
-    },
     //FOR MPA APPROACH
-    LoadPage: (htmlFile) => ipcRenderer.invoke('LoadPage', htmlFile),
+    LoadPage: async (name) => {
+      try {
+        return await ipcRenderer.invoke('LoadPage', name);
+      } catch (error) {
+        console.error('Failed to load HTML:', error);
+      }
+    },
 
-    getCurrentUserID: () => currentUserID,
-    setCurrentUserID: (newID) => {
+    GetCurrentUserID: () => currentUserID,
+    SetCurrentUserID: (newID) => {
       if(typeof newID === 'number'){
         if(newID <= 0){
           currentUserID = NaN;

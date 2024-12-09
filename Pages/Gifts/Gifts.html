@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../../mainStyle.css">
 
     <script src="../../Renderer/Utils.js"></script>
+    <script src="../../Renderer/Navigation.js"></script>
     <script src="GiftLogic.js"></script>
 
     <title>From the creators of Grindr</title>
@@ -15,10 +16,10 @@
   <body>
 
     <nav class="nav">
-        <button type="button" class="navButton" onclick="location.href='Pages/Account/Account.html';">Account</button>
-        <button type="button" class="navButton active" onclick="location.href='Gifts.html';">Gifts</button>
-        <button type="button" class="navButton" onclick="location.href='Event.html';">Events</button>
-        <button type="button" class="navButton" onclick="location.href='Recipient.html';">Loved Ones</button>
+        <button type="button" class="navButton" id="nav_account">Account</button>
+        <button type="button" class="navButton" id="nav_gifts" disabled>Gifts</button>
+        <button type="button" class="navButton" id="nav_events">Events</button>
+        <button type="button" class="navButton" id="nav_recipients">Loved Ones</button>
     </nav>
 <div class="container">
     <h1>Your Gifts</h1>

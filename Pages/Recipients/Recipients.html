@@ -5,16 +5,17 @@
     <link rel="stylesheet" href="../../mainStyle.css">
 
     <script src="../../Renderer/Utils.js"></script>
+    <script src="../../Renderer/Navigation.js"></script>
     <script src="RecipientLogic.js"></script>
 
     <title>From the creators of Grindr</title>
   </head>
 <body>
     <nav class="nav">
-        <button type="button" class="navButton" onclick="location.href='Account.html';">Account</button>
-        <button type="button" class="navButton" onclick="location.href='Gifts.html';">Gifts</button>
-        <button type="button" class="navButton" onclick="location.href='Event.html';">Events</button>
-        <button type="button" class="navButton active" onclick="location.href='Recipient.html';">Loved Ones</button>
+        <button type="button" class="navButton" id="nav_account">Account</button>
+        <button type="button" class="navButton" id="nav_gifts">Gifts</button>
+        <button type="button" class="navButton" id="nav_events">Events</button>
+        <button type="button" class="navButton" id="nav_recipients" disabled>Loved Ones</button>
     </nav>
 
     <div class="container">
