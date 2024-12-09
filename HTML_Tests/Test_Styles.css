@@ -105,97 +105,6 @@ body {
     color: white;
 }
 
-.add_container {
-    margin: 20px auto;
-    max-width: 600px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-}
-
-.add_container h1 {
-    color: #04AA6D;
-    font-size: 28px;
-    margin-bottom: 20px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.add_container table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.add_container td {
-    padding: 10px;
-    vertical-align: middle;
-}
-
-.add_container label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-}
-
-.add_container input,
-.add_container select {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-.add_container input:focus,
-.add_container select:focus {
-    border-color: #04AA6D;
-    box-shadow: 0 0 5px rgba(4, 170, 109, 0.5);
-    outline: none;
-}
-
-.add_container button {
-    background-color: #04AA6D;
-    color: white;
-    border: none;
-    padding: 12px;
-    width: 100%;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.add_container button:hover {
-    background-color: #039e5b;
-}
-
-@media (max-width: 768px) {
-    .add_container table {
-        display: block;
-    }
-
-    .add_container tr {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-
-    .add_container td {
-        width: 100%;
-    }
-
-    .add_container label {
-        margin-bottom: 5px;
-    }
-}
-
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -208,6 +117,42 @@ body {
     background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
     justify-content: center;
     align-items: center;
+}
+
+.modal h1 {
+    color: #04AA6D;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.modal table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.modal label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal input,
+.modal select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 /* Modal Content */
