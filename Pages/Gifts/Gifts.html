@@ -26,43 +26,20 @@
         <h1>Your Gifts</h1>
 
         <div class="tableButtons">
-            <button id="openModal" class="navButton">Add Gift</button>
+            <button id="addRowBtn" class="navButton">Add Gift</button>
             <button id="editRowBtn" class="navButton">Edit Selected Gift</button>
             <button id="deleteRowBtn" class="deleteButton">Delete Selected Gift</button>
         </div>
 
-        <table id="table">
-            <thead>
-                <tr>
-                    <th>Gift Name</th>
-                    <th>Recipient</th>
-                    <th>Event</th>
-                    <th>Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Easy Bake Oven</td>
-                    <td>Maria Anders</td>
-                    <td>Christmas</td>
-                    <td>$50</td>
-                    
-                </tr>
-                <tr>
-                    <td>Thingamabob</td>
-                    <td>Francisco Chang</td>
-                    <td>Birthday</td>
-                    <td>$100</td>
-                    
-                </tr>
-            </tbody>
-        </table>
+        <div id="giftTableContainer">
+
+        </div>
     </div>
 
     <!-- Add Gift Modal -->
-    <div id="myModal" class="modal">
+    <div id="addModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span id="closeAddModalBtn" class="close">&times;</span>
             <h1>Add Gift</h1>
             <form id="addGiftForm">
                 <table>
@@ -97,7 +74,7 @@
     <!-- Edit Gift Modal -->
     <div id="editModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span id="closeEditModalBtn"class="close">&times;</span>
             <h1>Edit Gift</h1>
             <form id="editGiftForm">
                 <table>
@@ -107,11 +84,18 @@
                     </tr>
                     <tr>
                         <td><label for="editRecipientId">Recipient ID:</label></td>
-                        <td colspan="2"><input type="number" id="editRecipientId" name="editRecipientId" required></td>
+                        <td colspan="2">
+                            <select id="editRecipientId" name="editRecipientId" required>
+                            </select>
+
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="editEventId">Event ID:</label></td>
-                        <td colspan="2"><input type="number" id="editEventId" name="editEventId" required></td>
+                        <td colspan="2">
+                            <select id="editEventId" name="editEventId" required>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="editCost">Cost:</label></td>
@@ -129,88 +113,10 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript
+    DON'T WORRY ABOUT THIS STUFF, IT'S JUST HERE SO I CAN COPY INTO THE JS FILE 
+    -->
     <script>
-        // Modal Handling
-        const modal = document.getElementById("myModal");
-        const editModal = document.getElementById("editModal");
-        const openModalBtn = document.getElementById("openModal");
-        const closeModalBtn = document.querySelector(".close");
-        const cancelModalBtn = document.getElementById("cancelModal");
-        const cancelEditModalBtn = document.getElementById("cancelEditModal");
-        let selectedRow = null;
-
-        openModalBtn.onclick = () => modal.style.display = "flex";
-        closeModalBtn.onclick = cancelModalBtn.onclick = () => {
-            modal.style.display = "none";
-            document.getElementById("addGiftForm").reset();
-        };
-        cancelEditModalBtn.onclick = () => {
-            editModal.style.display = "none";
-            document.getElementById("editGiftForm").reset();
-        };
-
-        window.onclick = (event) => {
-            if (event.target === modal) {
-                modal.style.display = "none";
-                document.getElementById("addGiftForm").reset();
-            } else if (event.target === editModal) {
-                editModal.style.display = "none";
-                document.getElementById("editGiftForm").reset();
-            }
-        };
-
-        // Row Selection
-        document.addEventListener('DOMContentLoaded', () => {
-            const rows = document.querySelectorAll('#table tbody tr');
-            rows.forEach((row) => {
-                row.addEventListener('click', () => {
-                    rows.forEach((r) => r.classList.remove('selected'));
-                    row.classList.add('selected');
-                    selectedRow = row;
-                });
-            });
-        });
-
-        // Edit Gift
-        const editRowBtn = document.getElementById("editRowBtn");
-        editRowBtn.addEventListener("click", () => {
-            if (!selectedRow) {
-                alert("Please select a row to edit.");
-                return;
-            }
-            const cells = selectedRow.querySelectorAll("td");
-            document.getElementById("editName").value = cells[2].textContent;
-            document.getElementById("editCost").value = cells[1].textContent;
-            document.getElementById("editRecipientId").value = cells[0].textContent;
-            editModal.style.display = "flex";
-        });
-
-        // Save edited gift
-        const editGiftForm = document.getElementById("editGiftForm");
-        editGiftForm.onsubmit = (e) => {
-            e.preventDefault();
-            selectedRow.cells[2].textContent = document.getElementById("editName").value;
-            selectedRow.cells[1].textContent = document.getElementById("editCost").value;
-            selectedRow.cells[0].textContent = document.getElementById("editRecipientId").value;
-            editModal.style.display = "none";
-        };
-
-        // Add Gift
-        const addGiftForm = document.getElementById("addGiftForm");
-        addGiftForm.onsubmit = (e) => {
-            e.preventDefault();
-            const table = document.querySelector('#table tbody');
-            const newRow = table.insertRow();
-            newRow.innerHTML = `
-                <td>${document.getElementById("recipientId").value}</td>
-                <td>${document.getElementById("cost").value}</td>
-                <td>${document.getElementById("name").value}</td>
-                <td><button class="editBtn">Edit</button></td>
-            `;
-            modal.style.display = "none";
-            addGiftForm.reset();
-        };
 
         const deleteRowBtn = document.getElementById("deleteRowBtn");
         deleteRowBtn.onclick = () => {

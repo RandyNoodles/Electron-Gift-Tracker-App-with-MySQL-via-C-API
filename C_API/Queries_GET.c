@@ -6,7 +6,7 @@
 MYSQL_RES* GetGifts(MYSQL* conn, int userId) {
 	char query[QUERY_BUFFER];
 	sprintf(query,
-		"SELECT g.`name`, g.cost,  s.`status` AS `status`, CONCAT(r.firstName, r.lastName) AS 'recipient' "
+		"SELECT g.GiftID, g.`name`, g.cost,  s.`status` AS `status`, CONCAT(r.firstName, r.lastName) AS 'recipient' "
 		"FROM gift g "
 		"JOIN recipient r ON r.RecipientID = g.RecipientID "
 		"JOIN `user` u ON u.UserID = r.UserID "
