@@ -1,7 +1,5 @@
 //ONE OF THE SOLUTIONS TO ADD EVENT LISTENERS TO OUR DYNAMIC SECTIONS
 
-
-
 window.addEventListener("load", init);
 
 function init(){

@@ -1,10 +1,13 @@
 //THIS IS BASICALLY SERVER-SIDE CODE
 
+let openWithDevConsole = true;
+
+
 //Main electron stuff for spawning window, and inter-process communication
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 //Supporting functions
 const MySQLAPI = require('./MainScripts/APICalls.js');
-//Filesystem access
+//Filesystem
 const fs = require('fs');
 //Path stuff for grabbing my preload script.
 //Helps make it more explicit? Was recommended, idk why relative isn't good enough.
@@ -14,17 +17,24 @@ let mainWindow;
 
 app.on('ready', ()=>{
     mainWindow = new BrowserWindow({
+        width: 2000,
+        height: 1000,
         //This links it to the preload file
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             enableRemoteModule: false,
-            nodeIntegration: false,
         },
     });
 
     //Load the actual window
     mainWindow.loadFile('index.html');
+    
+
+    if(openWithDevConsole){
+        BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
+    }
+
 
     //Attach event handler to client-side API call
     //SEE preload.js
@@ -55,8 +65,6 @@ app.on('ready', ()=>{
         }
     });
 });//End app.onReady()
-
-
 
     //This is mac-specific stuff.
     //Apparenly macs don't care whether a window is open or not,
