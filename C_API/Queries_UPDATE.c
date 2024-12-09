@@ -23,7 +23,7 @@ int UpdateGift(MYSQL* conn, char* giftID, char* name, char* cost,
 		"StatusID = %s, "
 		"RecipientID = %s, "
 		"EventID = %s, "
-		"LocationID = %s "
+		"PurchaseLocationID = %s "
 		"WHERE giftID = %s; ",
 		name, cost, statusID, recipientID, eventID, locationID, giftID);
 

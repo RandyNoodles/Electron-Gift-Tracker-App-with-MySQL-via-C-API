@@ -7,7 +7,7 @@ int AddGift(MYSQL* conn, char* name, char* cost,
 
 	sprintf(query,
 		"INSERT INTO gift "
-		"(`Name`, Cost, StatusID, RecipientID, EventID, LocationID) "
+		"(`Name`, Cost, StatusID, RecipientID, EventID, PurchaseLocationID) "
 		"VALUES "
 		"(%s, %s, %s, %s, %s, %s);",
 		name, cost, statusID, recipientID, eventID, locationID);
