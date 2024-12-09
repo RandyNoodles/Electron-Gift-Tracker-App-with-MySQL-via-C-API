@@ -31,15 +31,19 @@ body {
 }
 
 #deleteRowBtn {
-    background-color: red;
+    background-color: #c01917;
     color: white;
     border: none;
     padding: 10px 20px;
-    margin-bottom: 0;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
     transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+#deleteRowBtn:hover{
+    background-color: #800301;
 }
 
 .navButton:hover {
@@ -47,8 +51,7 @@ body {
 }
 
 .navButton.active {
-    background-color: #025e36; /* Light gray */
-    color: #666; /* Darker text to indicate it's disabled */
+    background-color: #17a4cf; /* Light gray */
     cursor: not-allowed; /* Show a "not-allowed" cursor */
     pointer-events: none; /* Disable clicking */
 }
@@ -66,6 +69,19 @@ body {
     font-size: 50px;
     padding-bottom: 0px;
     margin-bottom: 0px;
+}
+
+.container input,
+.contaier select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    max-width: 150px;
+    margin-top: 30px;
 }
 
 .tableButtons {
@@ -105,15 +121,15 @@ body {
 }
 
 #table tr:nth-child(even) {
-    background-color: #ddd;
+    background-color: #bebebe;
 }
 
 #table tr:nth-child(odd) {
-    background-color: palegreen;
+    background-color: white;
 }
 
 #table tr:hover {
-    background-color: orange;
+    background-color: #04AA6D;
 }
 
 #table tr.selected {
