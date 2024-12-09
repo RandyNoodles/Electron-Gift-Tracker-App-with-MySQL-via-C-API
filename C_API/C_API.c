@@ -93,6 +93,9 @@ int main(int argc, char* argv[]) {
             case GET_LOCATIONS:
                 // Handle GET_LOCATIONS
                 break;
+            case GET_USER:
+                queryResult = GetUser(conn, userID);
+                break;
             default:
                 fprintf(stderr, "Unrecognized command from the GET family. [%d]", command);
         }

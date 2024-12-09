@@ -1,6 +1,3 @@
-var currentUserID = NaN;
-
-
 function id(elementName){
     return document.getElementById(elementName);
 }
@@ -9,6 +6,8 @@ function id(elementName){
 
 function createTableFromJSON(data) {
     const table = document.createElement('table');
+
+    table.id = 'table';
 
     // Create table header
     const thead = table.createTHead();
@@ -55,7 +54,7 @@ function displayError(message){
 }
 
 function displayUserID(){
-    id('debug_currentUserID').innerText = "Debug::UserID: ".concat(currentUserID);
+    id('debug_currentUserID').innerText = "Debug::UserID: ".concat(window.backend.GetCurrentUserID());
 }
 
 function clearDynamicContent(){

@@ -2,7 +2,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 
-let currentUserID;
+var currentUserID;
 
 //Hopefully I don't need more than this. This stuff is confusing.
 contextBridge.exposeInMainWorld('backend', {
@@ -17,20 +17,13 @@ contextBridge.exposeInMainWorld('backend', {
         console.error('Failed to load HTML:', error);
       }
     },
-
-    GetCurrentUserID: () => currentUserID,
-    SetCurrentUserID: (newID) => {
-      if(typeof newID === 'number'){
-        if(newID <= 0){
-          currentUserID = NaN;
-        }
-        else{
-          currentUserID = newID;
-        }
-      }
-      else{
-        console.warn("USER ID NOT OF TYPE NUMBER");
-      }
+    GetCurrentUserID: async () => {
+      return await ipcRenderer.invoke('GetCurrentUserID');
+    },
+  
+    // Asynchronous setter for currentUserID
+    SetCurrentUserID: async (newID) => {
+      await ipcRenderer.invoke('SetCurrentUserID', newID);
+      
     }
-
 });

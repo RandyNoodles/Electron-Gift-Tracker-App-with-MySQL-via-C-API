@@ -7,6 +7,8 @@ MYSQL_RES* GetRecipients(MYSQL* conn, int userId);
 MYSQL_RES* GetStatuses(MYSQL* conn, int userId);//NOTE: Statuses are global. No userID required.
 												//We've included it regardless to simplify logic.
 
+MYSQL_RES* GetUser(MYSQL* conn, int userId);
+
 //NEED TO FIGURE OUT WHAT DO DO ABOUT THESE ERD-WISE
 MYSQL_RES* GetCategories(MYSQL* conn, int userId);
 MYSQL_RES* GetPurchaseLocations(MYSQL* conn, int userId);

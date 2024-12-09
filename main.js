@@ -1,6 +1,8 @@
 //THIS IS BASICALLY SERVER-SIDE CODE
 
 let openWithDevConsole = true;
+let currentUserID = NaN;
+
 
 
 //Main electron stuff for spawning window, and inter-process communication
@@ -36,6 +38,9 @@ app.on('ready', ()=>{
     }
 
 
+});//End app.onReady()
+
+
     //Attach event handler to client-side API call
     //SEE preload.js
     ipcMain.handle('MySQLAPI', async (event, args) => {
@@ -61,7 +66,20 @@ app.on('ready', ()=>{
             currentWindow.loadFile(path.join(__dirname, htmlFile));
         }
     });
-});//End app.onReady()
+
+
+
+
+    ipcMain.handle('GetCurrentUserID', () => currentUserID);
+    ipcMain.handle('SetCurrentUserID', (event, newID) =>{
+        if (typeof newID === 'number' && newID > 0) {
+            currentUserID = newID;
+        } 
+        else {
+            console.warn('Invalid User ID');
+        }
+    });
+
 
     //This is mac-specific stuff.
     //Apparenly macs don't care whether a window is open or not,

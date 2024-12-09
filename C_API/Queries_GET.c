@@ -18,7 +18,7 @@ MYSQL_RES* GetGifts(MYSQL* conn, int userId) {
 	//Send query
 	if (mysql_query(conn, query) != 0)
 	{
-		PrintSQLError(conn, "mysql_query");
+		PrintSQLError(conn, "GetGifts():");
 		return NULL;
 	}
 
@@ -37,7 +37,7 @@ MYSQL_RES* GetEvents(MYSQL* conn, int userId) {
 
 	if (mysql_query(conn, query) != 0)
 	{
-		PrintSQLError(conn, "mysql_query");
+		PrintSQLError(conn, "GetEvents():");
 		return NULL;
 	}
 
@@ -51,7 +51,7 @@ MYSQL_RES* GetRecipients(MYSQL* conn, int userId) {
 
 	if (mysql_query(conn, query) != 0)
 	{
-		PrintSQLError(conn, "mysql_query");
+		PrintSQLError(conn, "GetRecipients():");
 		return NULL;
 	}
 
@@ -65,7 +65,23 @@ MYSQL_RES* GetStatuses(MYSQL* conn, int userID) {
 		"SELECT * FROM `status`;");
 	if (mysql_query(conn, query) != 0)
 	{
-		PrintSQLError(conn, "mysql_query");
+		PrintSQLError(conn, "GetStatuses():");
+		return NULL;
+	}
+	return mysql_store_result(conn);
+}
+
+
+
+
+MYSQL_RES* GetUser(MYSQL* conn, int userID) {
+	char query[QUERY_BUFFER];
+	sprintf(query,
+		"SELECT * FROM `user` WHERE userID = %d",
+		userID);
+	if (mysql_query(conn, query) != 0)
+	{
+		PrintSQLError(conn, "GetUser():");
 		return NULL;
 	}
 	return mysql_store_result(conn);

@@ -100,8 +100,8 @@ async function SignIn(event){
     if(querySuccess){
 
         if(parsedResponse.userID > 0){
-            currentUserID = parsedResponse.userID;
-            displayUserID();
+            await window.backend.SetCurrentUserID(parsedResponse.userID);
+            id('debug_currentUserID').innerText = await window.backend.GetCurrentUserID();
             await window.backend.LoadPage('/Pages/Gifts/Gifts.html');
         }
         else{

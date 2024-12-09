@@ -20,4 +20,7 @@ function LoadPage_LovedOnes(event){
 }
 function LoadPage_Gifts(event){
     window.backend.LoadPage('/HTMLSections/Gifts.html');
+
+
+    
 }

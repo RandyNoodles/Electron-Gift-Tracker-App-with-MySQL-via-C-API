@@ -30,6 +30,7 @@ In javascript, the value *null* will convert to this automatically when calling 
 | GET_STATUSES      | 103   | userID (not needed, but it simplifies logic)	|
 | GET_CATEGORIES    | 104   | userID                                        |
 | GET_LOCATIONS     | 105   | userID                                        |
+| GET_USER			| 106	| userID										|
 |					|		|												|
 | ADD_GIFT          | 200   | name, cost, statusID, recipientID, eventID, locationID |
 | ADD_EVENT         | 201   | name, userID                                  |

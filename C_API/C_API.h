@@ -13,6 +13,7 @@ typedef enum {
     GET_STATUSES = 103,
     GET_CATEGORIES = 104,
     GET_LOCATIONS = 105,
+    GET_USER = 106,
 
     ADD_GIFT = 200,
     ADD_EVENT = 201,
