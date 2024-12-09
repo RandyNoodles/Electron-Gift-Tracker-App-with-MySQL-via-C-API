@@ -22,47 +22,30 @@
         <h1>Your Loved Ones</h1>
 
         <div class="tableButtons">
-            <button type="button">Edit</button>
-            <button id="openModal" class="navButton">Add Loved One</button>
+            <button id="addRowBtn" class="navButton">Add Recipient</button>
+            <button id="editRowBtn" class="navButton">Edit Selected</button>
+            <button id="deleteRowBtn" class="deleteButton">Delete Selected</button>
         </div>
-        
-        <table id="table">
-        <tr>
-            <th>Loved One</th>
-            <th>Gifts</th>
-            <th>Events</th>
-        </tr>
-        <tr>
-            <td>Maria Anders</td>
-            <td>Easy Bake Oven</td>
-            <td>Christmas</td>
-        </tr>
-        <tr>
-            <td>Francisco Chang</td>
-            <td>Thingamabob</td>
-            <td>Birthday</td>
-        </tr>
-        </table> 
-    </div>
+      
     
     
-    <div id="myModal" class="modal">
+    <div id="addModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span id="closeAddModalBtn" class="close">&times;</span>
             <h1>Add Loved One</h1>
-            <div id="addLovedOnediv">
+            <form id="addLovedOnediv">
                 <table>
                     <!-- Name Row -->
                     <tr>
-                        <td colspan="1"><label for="firstName">First Name</label></td>
+                        <td><label for="firstName">First Name</label></td>
                         <td colspan="5"><input type="text" id="firstName" name="firstName" required></td>
                     </tr>
                     <tr>
-                        <td colspan="1"><label for="lastName">Last Name</label></td>
+                        <td><label for="lastName">Last Name</label></td>
                         <td colspan="5"><input type="text" id="lastName" name="lastName"></td>
                     </tr>
                     <tr>
-                        <td colspan="1"><label for="dateOfBirth">Date Of Birth</label></td>
+                        <td><label for="dateOfBirth">Date Of Birth</label></td>
                         <td colspan="5"><input type="text" id="dateOfBirth" name="dateOfBirth"></td>
                     </tr>
                     <!-- Submit Button Row -->
@@ -71,36 +54,53 @@
                             <button type="submit" class="navButton">Add Loved One</button>
                         </td>
                         <td colspan="3" style="text-align: center;">
-                            <button type="submit" class="navButton">Cancel</button>
+                            <button type="submit" id="cancelModal" class="navButton">Cancel</button>
                         </td>
                     </tr>
                 </table>
-            </div>
+            </form>
         </div>
     </div>
     
-    <script>
-        // Modal Handling
-        const modal = document.getElementById("myModal");
-        const openModalBtn = document.getElementById("openModal");
-        const closeModalBtn = document.querySelector(".close");
-    
-        // Open the modal
-        openModalBtn.onclick = function () {
-            modal.style.display = "flex";
-        };
-    
-        // Close the modal
-        closeModalBtn.onclick = function () {
-            modal.style.display = "none";
-        };
-    
-        // Close modal on clicking outside of it
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };
-    </script>
-    </body>
-    </html>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span id="closeEditModalBtn"class="close">&times;</span>
+            <h1>Edit Recipient</h1>
+            <form id="editGiftForm">
+                <table>
+                    <tr>
+                        <td><label for="editFirstName">First Name:</label></td>
+                        <td colspan="2"><input type="text" id="editFirstName" name="editFirstName" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="editLasttName">Last Name:</label></td>
+                        <td colspan="2"><input type="text" id="editLastName" name="editLastName" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="editDateOfBirth">Date of Birth:</label></td>
+                        <td colspan="2"><input type="text" id="editDateOfBirth" name="editDateOfBirth" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="editEventId">Event ID:</label></td>
+                        <td colspan="2">
+                            <select id="editEventId" name="editEventId" required>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="editCost">Cost:</label></td>
+                        <td colspan="2"><input type="number" id="editCost" name="editCost" required></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2" style="text-align: center;">
+                            <button type="submit" class="navButton">Save Changes</button>
+                            <button type="button" class="navButton" id="cancelEditModal">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+ 
