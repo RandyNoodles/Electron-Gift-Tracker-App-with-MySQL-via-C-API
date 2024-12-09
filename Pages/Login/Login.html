@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+/>
+    <link rel="stylesheet" href="../../mainStyle.css"/>
+
+    <script src="../../Renderer/Utils.js"></script>
+    <script src="LoginLogic.js"></script>
+
+    <title>From the creators of Grindr</title>
+  </head>
+
+
+
+  <body>
+    <div id="debugSection" class="debug">
+      <span id="debug_currentUserID"></span>
+      <span id="errorOutput" class="errorTxt"></span>
+    </div>
+  
+
+      <!-- Login Form -->
+      <div id="loginSection" class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="text" id="username" placeholder="Username" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <button type="submit" id="loginButton">Login</button>
+          <p id="loginError" class="errorTxt"></p>
+        </form>
+        <button id="showCreateAccountForm">Create an Account</button>
+      </div>
+    
+      <div id="newUserModal" class="modal">
+        <div id="newUserDiv" class="modal-content">
+          <form id="newUserForm">
+            <input type="text" id="newUserName" placeholder="Username" required />
+            <input type="password" id="newUserPassword" placeholder="Password" required />
+            <input type="text" id="newUserFirstName" placeholder="First Name" required />
+            <input type="text" id="newUserLastName" placeholder="Last Name" required />
+            <input type="email" id="newUserEmail" placeholder="Email" required />
+            <input type="tel" id="newUserPhone" placeholder="Phone Number" required />
+            <button type="submit" id="createAccountButton">Create Account</button>
+            <p id="newUserError" class="errorTxt"></p>
+          </form>
+          <button id="backToLoginButton">Back to Login</button>
+          <p id="newUserError" class="errorTxt"></p>
+        </div>
+      </div>
+      <!-- New User Form -->
+    </div>
+  </body>
+</html>

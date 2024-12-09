@@ -1,38 +1,25 @@
 window.addEventListener('load', init);
 
-
 function init(){
-    id('loginButton').addEventListener('click', SignIn);
-    id('newUserButton').addEventListener('click', SwitchToCreateAccount);
-    id('createAccountButton').addEventListener('click', CreateAccount);
+
+    id('loginForm').addEventListener('submit', SignIn);
+    id('showCreateAccountForm').addEventListener('click', SwitchToCreateAccount);
+    id('newUserForm').addEventListener('submit', CreateAccount);
     id('backToLoginButton').addEventListener('click', SwitchToLogin);
-    id('nav_signOut').addEventListener('click', SignOut);
-    ShowLoginModal();
 }
 
-
-
-function ShowLoginModal(){
-    id('loginModal').style.display = "inline";
-    id('navbar').style.display = "none";
-    id('newUserForm').style.display = "none";
-}
-
-function HideLoginModal(){
-    id('loginModal').style.display = "none";
-    id('navbar').style.display = "flex";
+function HideNewUserModal(){
+    id('newUserModal').style.display = "none";
     SwitchToLogin();
     ClearCreateAccountForm();
-    ClearLoginForm();
 }
 
 function SwitchToCreateAccount(){
-    id('newUserForm').style.display = "inline";
-    id('loginForm').style.display = "none";
+    id('newUserModal').style.display = "inline";
 }
 
 function SwitchToLogin(){
-    id('newUserForm').style.display = "none";
+    id('newUserModal').style.display = "none";
     id('loginForm').style.display = "flex";
 }
 
@@ -45,13 +32,10 @@ function ClearCreateAccountForm(){
     id('newUserPhone').value = "";
     id('newUserError').innerText = "";
 }
-function ClearLoginForm(){
-    id('username').value = "";
-    id('password').value = "";
-    id('loginError').innerText = "";
-}
 
-async function CreateAccount(){
+async function CreateAccount(event){
+    event.preventDefault();
+
     const userName = argString(id('newUserName').value);
     const password = argString(id('newUserPassword').value);
     const firstName = argString(id('newUserFirstName').value);
@@ -83,7 +67,9 @@ async function CreateAccount(){
 }
 
 
-async function SignIn(){
+async function SignIn(event){
+    event.preventDefault();
+
     const userName = argString(id('username').value);
     const password = argString(id('password').value);
 
@@ -98,14 +84,13 @@ async function SignIn(){
             try{
                 parsedResponse = JSON.parse(response.output);
                 querySuccess = true;
-
             }
             catch(parseError){
-                displayError(`Failed to parse JSON on SignIn(): ${parseError}`);
+                displayError(`Failed to parse JSON on SignIn(): ${parseError}`);                
             }
         }
         else{
-            displayError(`Invalid query: ${response.output}`);
+            displayError(`Invalid query: ${response.output}`);           
         }
     }
     catch(error){
@@ -117,7 +102,7 @@ async function SignIn(){
         if(parsedResponse.userID > 0){
             currentUserID = parsedResponse.userID;
             displayUserID();
-            HideLoginModal();
+            await window.backend.LoadPage('/Pages/Gifts/Gifts.html');
         }
         else{
             id('loginError').innerText = "Invalid username or password.";
@@ -126,8 +111,6 @@ async function SignIn(){
 }
 
 function SignOut(){
-
     currentUserID = NaN;
     ShowLoginModal();
-    clearDynamicContent();
 }
