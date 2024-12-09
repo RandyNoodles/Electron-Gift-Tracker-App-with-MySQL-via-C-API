@@ -1,9 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+/>
+    <link rel="stylesheet" href="./Styles/mainStyle.css">
+
+    <script src="../../Renderer/Utils.js"></script>
+    <script src="GiftLogic.js"></script>
+
+    <title>From the creators of Grindr</title>
+  </head>
+
+
+
+  <body>
+
 <div class="container">
     <h1>Your Gifts</h1>
 
     <div class="tableButtons">
         <button type="button">Edit</button>
         <button id="openModal" class="navButton">Add Gift</button>
+        <button id="signout">SIGNOUT TEST</button>
     </div>
     
     <table id="table">
@@ -75,6 +100,8 @@
         </form>
     </div>
 </div>
+</body>
+</html>
 
 <script>
     // Modal Handling

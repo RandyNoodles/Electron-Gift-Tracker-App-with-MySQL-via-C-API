@@ -6,7 +6,7 @@ let openWithDevConsole = true;
 //Main electron stuff for spawning window, and inter-process communication
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 //Supporting functions
-const MySQLAPI = require('./MainScripts/APICalls.js');
+const MySQLAPI = require('./APICalls.js');
 //Filesystem
 const fs = require('fs');
 //Path stuff for grabbing my preload script.
@@ -64,6 +64,14 @@ app.on('ready', ()=>{
             return {success: false, output: error};
         }
     });
+
+    ipcMain.handle('LoadPage', (event, htmlFile) =>{
+
+        const currentWindow = BrowserWindow.getFocusedWindow();
+        if(currentWindow){
+            currentWindow.loadFile(path.join(__dirname, htmlFile));
+        }
+    })
 });//End app.onReady()
 
     //This is mac-specific stuff.
