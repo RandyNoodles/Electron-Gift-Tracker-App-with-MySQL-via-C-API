@@ -18,8 +18,8 @@ contextBridge.exposeInMainWorld('backend', {
       }
     },
 
-    getCurrentUserID: () => currentUserID,
-    setCurrentUserID: (newID) => {
+    GetCurrentUserID: () => currentUserID,
+    SetCurrentUserID: (newID) => {
       if(typeof newID === 'number'){
         if(newID <= 0){
           currentUserID = NaN;
