@@ -15,7 +15,7 @@
     <nav class="nav">
         <button type="button" class="navButton" id="nav_account">Account</button>
         <button type="button" class="navButton" id="nav_gifts">Gifts</button>
-        <button type="button" class="navButton" id="nav_events" disabled>Events</button>
+        <button type="button" class="navButton active" id="nav_events" disabled>Events</button>
         <button type="button" class="navButton" id="nav_recipients">Loved Ones</button>
     </nav>
 
@@ -28,22 +28,18 @@
         </div>
         
         <table id="table">
-        <tr>
-            <th>Event Name</th>
-            <th>Recipient</th>
-            <th>Gifts</th>
-        </tr>
-        <tr>
-            <td>Christmas</td>
-            <td>Maria Anders</td>
-            <td>Easy Bake Oven</td>
-        </tr>
-        <tr>
-            <td>Birthday</td>
-            <td>Francisco Chang</td>
-            <td>Thingamabob</td>
-        </tr>
-        </table> 
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Recipient</th>
+                    <th>Gifts</th>
+                    <th>Actions</th> <!-- New column for Edit/Delete buttons -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically generated -->
+            </tbody>
+        </table>
     </div>
     
     <div id="myModal" class="modal">
