@@ -6,64 +6,60 @@
 <body>
     <nav class="nav">
         <button type="button" class="navButton">Account</button>
-        <button type="button" class="navButton" onclick="location.href='eventsPage_Test.html';">Events</button>
+        <button type="button" class="navButton" onclick="location.href='lovedOnesPage_Test.html';">Loved Ones</button>
         <button type="button" class="navButton" onclick="location.href='GiftsPage_test.html';">Gifts</button>
     </nav>
 
     <div class="container">
-        <h1>Your Loved Ones</h1>
+        <h1>Your Events</h1>
 
         <div class="tableButtons">
             <button type="button">Edit</button>
-            <button id="openModal" class="navButton">Add Loved One</button>
+            <button id="openModal" class="navButton">Add Event</button>
         </div>
         
         <table id="table">
         <tr>
-            <th>Loved One</th>
+            <th>Event Name</th>
+            <th>Recipient</th>
             <th>Gifts</th>
-            <th>Events</th>
         </tr>
         <tr>
+            <td>Christmas</td>
             <td>Maria Anders</td>
             <td>Easy Bake Oven</td>
-            <td>Christmas</td>
         </tr>
         <tr>
+            <td>Birthday</td>
             <td>Francisco Chang</td>
             <td>Thingamabob</td>
-            <td>Birthday</td>
         </tr>
         </table> 
     </div>
     
-    
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h1>Add Loved One</h1>
-            <form id="addLovedOneForm">
+            <h1>Add Gift</h1>
+            <form id="addGiftForm">
                 <table>
                     <!-- Name Row -->
                     <tr>
-                        <td colspan="1"><label for="firstName">First Name</label></td>
-                        <td colspan="5"><input type="text" id="firstName" name="firstName" required></td>
+                        <td colspan="1"><label for="name">Event Name:</label></td>
+                        <td colspan="5"><input type="text" id="name" name="name" required></td>
                     </tr>
+                    <!-- Cost and Status ID Row -->
                     <tr>
-                        <td colspan="1"><label for="lastName">Last Name</label></td>
-                        <td colspan="5"><input type="text" id="lastName" name="lastName"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"><label for="dateOfBirth">Date Of Birth</label></td>
-                        <td colspan="5"><input type="text" id="dateOfBirth" name="dateOfBirth"></td>
+                        <td><label for="date">Date:</label></td>
+                        <td colspan="2"><input type="text" id="date" name="date" required></td>
+                        <td><label for="categoryId">Category ID:</label></td>
+                        <td colspan="2"><input type="number" id="categoryId" name="categoryId" required></td>
                     </tr>
                     <!-- Submit Button Row -->
                     <tr>
-                        <td colspan="3" style="text-align: center;">
-                            <button type="submit" class="navButton">Add Loved One</button>
-                        </td>
-                        <td colspan="3" style="text-align: center;">
-                            <button type="submit" class="navButton">Cancel</button>
+                        <td colspan="6" style="text-align: center;">
+                            <button type="submit" class="navButton">Add Gift</button>
+                            <button type="button" class="navButton">Cancel</button>
                         </td>
                     </tr>
                 </table>
