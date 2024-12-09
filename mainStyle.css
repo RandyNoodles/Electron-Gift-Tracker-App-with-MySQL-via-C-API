@@ -30,7 +30,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.deleteButton {
+#deleteRowBtn {
     background-color: red;
     color: white;
     border: none;
@@ -47,7 +47,7 @@ body {
 }
 
 .navButton.active {
-    background-color: #d3d3d3; /* Light gray */
+    background-color: #025e36; /* Light gray */
     color: #666; /* Darker text to indicate it's disabled */
     cursor: not-allowed; /* Show a "not-allowed" cursor */
     pointer-events: none; /* Disable clicking */
