@@ -13,6 +13,9 @@ MYSQL_RES* GetUser(MYSQL* conn, int userId);
 MYSQL_RES* GetCategories(MYSQL* conn, int userId);
 MYSQL_RES* GetPurchaseLocations(MYSQL* conn, int userId);
 
+MYSQL_RES* GetPurchaseLocations(MYSQL* conn, int userID);
+MYSQL_RES* GetCategories(MYSQL* conn, int userID);
+
 
 //Do we need this? Or should we just filter client-side.
 MYSQL_RES* GetEventRecipients(MYSQL* conn, int eventId); // Retrieve recipients tied to a specific event
