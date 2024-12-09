@@ -4,39 +4,38 @@
 <link rel="stylesheet" href="Test_Styles.css">
 </head>
 <body>
-    
-    <nav class="nav">
-        <button type="button" class="navButton">Account</button>
-        <button type="button" class="navButton">Loved Ones</button>
-        <button type="button" class="navButton">Events</button>
-    </nav>
-    
-    <div class="container">
+
+<!-- Trigger Button -->
+<button id="openModal" class="navButton">Open Add Gift Form</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
         <h1>Add Gift</h1>
         <form id="addGiftForm">
             <table>
+                <!-- Name Row -->
                 <tr>
-                    <td><label for="name">Gift Name:</label></td>
-                    <td><input type="text" id="name" name="name" required></td>
+                    <td colspan="1"><label for="name">Gift Name:</label></td>
+                    <td colspan="5"><input type="text" id="name" name="name" required></td>
                 </tr>
+                <!-- Cost and Status ID Row -->
                 <tr>
                     <td><label for="cost">Cost:</label></td>
-                    <td><input type="number" id="cost" name="cost" required></td>
-                </tr>
-                <tr>
+                    <td colspan="2"><input type="number" id="cost" name="cost" required></td>
                     <td><label for="statusId">Status ID:</label></td>
-                    <td><input type="number" id="statusId" name="statusId" required></td>
+                    <td colspan="2"><input type="number" id="statusId" name="statusId" required></td>
                 </tr>
+                <!-- Recipient ID, Event ID, and Location ID Row -->
                 <tr>
                     <td><label for="recipientId">Recipient ID:</label></td>
-                    <td><input type="number" id="recipientId" name="recipientId" required></td>
-                </tr>
-                <tr>
+                    <td colspan="2"><input type="number" id="recipientId" name="recipientId" required></td>
                     <td><label for="eventId">Event ID:</label></td>
-                    <td><input type="number" id="eventId" name="eventId" required></td>
+                    <td colspan="2"><input type="number" id="eventId" name="eventId" required></td>
                 </tr>
                 <tr>
-                    <td><label for="locationId">Location ID:</label></td>
+                    <td colspan="2"><label for="locationId">Location ID:</label></td>
                     <td>
                         <select id="locationId" name="locationId" required>
                             <option value="" disabled selected>Select Location</option>
@@ -46,12 +45,39 @@
                         </select>
                     </td>
                 </tr>
+                <!-- Submit Button Row -->
                 <tr>
-                    <td colspan="2" style="text-align: center;">
+                    <td colspan="6" style="text-align: center;">
                         <button type="submit" class="navButton">Add Gift</button>
                     </td>
                 </tr>
             </table>
         </form>
     </div>
+</div>
+
+<script>
+    // Modal Handling
+    const modal = document.getElementById("myModal");
+    const openModalBtn = document.getElementById("openModal");
+    const closeModalBtn = document.querySelector(".close");
+
+    // Open the modal
+    openModalBtn.onclick = function () {
+        modal.style.display = "flex";
+    };
+
+    // Close the modal
+    closeModalBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // Close modal on clicking outside of it
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+</script>
 </body>
+</html>

@@ -6,36 +6,33 @@
 <body>
     <nav class="nav">
         <button type="button" class="navButton">Account</button>
-        <button type="button" class="navButton" onclick="location.href='eventsPage_Test.html';">Events</button>
         <button type="button" class="navButton" onclick="location.href='lovedOnesPage_Test.html';">Loved Ones</button>
+        <button type="button" class="navButton" onclick="location.href='GiftsPage_test.html';">Gifts</button>
     </nav>
 
     <div class="container">
-        <h1>Your Gifts</h1>
+        <h1>Your Events</h1>
 
         <div class="tableButtons">
             <button type="button">Edit</button>
-            <button id="openModal" class="navButton">Add Gift</button>
+            <button id="openModal" class="navButton">Add Event</button>
         </div>
         
         <table id="table">
         <tr>
-            <th>Gift Name</th>
+            <th>Event Name</th>
             <th>Recipient</th>
-            <th>Event</th>
-            <th>Cost</th>
+            <th>Gifts</th>
         </tr>
         <tr>
-            <td>Easy Bake Oven</td>
-            <td>Maria Anders</td>
             <td>Christmas</td>
-            <td>$50.00</td>
+            <td>Maria Anders</td>
+            <td>Easy Bake Oven</td>
         </tr>
         <tr>
-            <td>Thingamabob</td>
-            <td>Francisco Chang</td>
             <td>Birthday</td>
-            <td>$100.00</td>
+            <td>Francisco Chang</td>
+            <td>Thingamabob</td>
         </tr>
         </table> 
     </div>
@@ -48,33 +45,15 @@
                 <table>
                     <!-- Name Row -->
                     <tr>
-                        <td colspan="1"><label for="name">Gift Name:</label></td>
+                        <td colspan="1"><label for="name">Event Name:</label></td>
                         <td colspan="5"><input type="text" id="name" name="name" required></td>
                     </tr>
                     <!-- Cost and Status ID Row -->
                     <tr>
-                        <td><label for="cost">Cost:</label></td>
-                        <td colspan="2"><input type="number" id="cost" name="cost" required></td>
-                        <td><label for="statusId">Status ID:</label></td>
-                        <td colspan="2"><input type="number" id="statusId" name="statusId" required></td>
-                    </tr>
-                    <!-- Recipient ID, Event ID, and Location ID Row -->
-                    <tr>
-                        <td><label for="recipientId">Recipient ID:</label></td>
-                        <td colspan="2"><input type="number" id="recipientId" name="recipientId" required></td>
-                        <td><label for="eventId">Event ID:</label></td>
-                        <td colspan="2"><input type="number" id="eventId" name="eventId" required></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><label for="locationId">Location ID:</label></td>
-                        <td>
-                            <select id="locationId" name="locationId" required>
-                                <option value="" disabled selected>Select Location</option>
-                                <option value="1">Location 1</option>
-                                <option value="2">Location 2</option>
-                                <option value="3">Location 3</option>
-                            </select>
-                        </td>
+                        <td><label for="date">Date:</label></td>
+                        <td colspan="2"><input type="text" id="date" name="date" required></td>
+                        <td><label for="categoryId">Category ID:</label></td>
+                        <td colspan="2"><input type="number" id="categoryId" name="categoryId" required></td>
                     </tr>
                     <!-- Submit Button Row -->
                     <tr>
