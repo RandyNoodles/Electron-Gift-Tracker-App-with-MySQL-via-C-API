@@ -228,3 +228,17 @@ body {
     text-decoration: none;
 }
 
+#newCategoryInput {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+#newCategoryInput:focus {
+    border-color: #04AA6D;
+    box-shadow: 0 0 5px rgba(4, 170, 109, 0.5);
+    outline: none;
+}

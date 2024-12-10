@@ -49,7 +49,20 @@
                         <td><label for="date">Date:</label></td>
                         <td colspan="2"><input type="text" id="date" name="date" required></td>
                         <td><label for="categoryId">Category ID:</label></td>
-                        <td colspan="2"><input type="number" id="categoryId" name="categoryId" required></td>
+                        <td colspan="2">
+                            <select id="EventCategory" name="EventCategory" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="1">Category 1</option>
+                                <option value="2">Category 2</option>
+                            </select>
+                            <div style="display: flex; align-items: center; margin-top: 10px;">
+                                <input type="checkbox" id="addCategoryCheckbox" name="addCategoryCheckbox">
+                                <label for="addCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
+                            </div>
+                            <input type="text" id="newCategoryInput" name="newCategory" 
+                                   placeholder="Enter new category" 
+                                   style="display: none; margin-top: 10px; width: 100%;">
+                        </td>
                     </tr>
                     <!-- Submit Button Row -->
                     <tr>
@@ -79,9 +92,20 @@
                     </tr>
                     <tr>
                         <td><label for="editEventCategorty">Event Category</label></td>
-                        <td colspan="2"><select id="editEventCategorty" name="editEventCategorty" required>
-                        </select></td>
-                    
+                        <td colspan="2">
+                            <select id="editEventCategory" name="editEventCategory" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="1">Category 1</option>
+                                <option value="2">Category 2</option>
+                            </select>
+                            <div style="display: flex; align-items: center; margin-top: 10px;">
+                                <input type="checkbox" id="editAddCategoryCheckbox" name="editAddCategoryCheckbox">
+                                <label for="editAddCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
+                            </div>
+                            <input type="text" id="editNewCategoryInput" name="editNewCategory" 
+                                   placeholder="Enter new category" 
+                                   style="display: none; margin-top: 10px; width: 100%;">
+                        </td>
                     </tr>
                         
                     <tr>
@@ -95,3 +119,29 @@
         </div>
     </div>
     
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addCategoryCheckbox = document.getElementById("addCategoryCheckbox");
+        const newCategoryInput = document.getElementById("newCategoryInput");
+        const editAddCategoryCheckbox = document.getElementById("editAddCategoryCheckbox");
+        const editNewCategoryInput = document.getElementById("editNewCategoryInput");
+    
+        // Toggle visibility of the new category input in Add Modal
+        addCategoryCheckbox.addEventListener("change", function () {
+            if (addCategoryCheckbox.checked) {
+                newCategoryInput.style.display = "block";
+            } else {
+                newCategoryInput.style.display = "none";
+            }
+        });
+    
+        // Toggle visibility of the new category input in Edit Modal
+        editAddCategoryCheckbox.addEventListener("change", function () {
+            if (editAddCategoryCheckbox.checked) {
+                editNewCategoryInput.style.display = "block";
+            } else {
+                editNewCategoryInput.style.display = "none";
+            }
+        });
+    });
+</script>
