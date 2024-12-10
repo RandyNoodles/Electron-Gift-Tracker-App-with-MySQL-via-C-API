@@ -200,7 +200,7 @@ int main(int argc, char* argv[]) {
         }
 
         if (addedItemID != QUERY_FAILURE) {
-            printf("{ AddedItemID: %d }", addedItemID);
+            printf("{ \"AddedItemID\": %d }", addedItemID);
         }
         //Success.
     }
@@ -260,12 +260,19 @@ int main(int argc, char* argv[]) {
                     updateRowsAffected = UpdateLocation(conn, argv[2], argv[3], argv[4], argv[5]);
                 }
                 break;
+            case UPDATE_USER:
+                if (argc != 8) {
+                    fprintf(stderr, "Invalid arg count for UPDATE_USER command.");
+                }
+                else {
+                    updateRowsAffected = UpdateUser(conn, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7]);
+                }
             default:
                 fprintf(stderr, "Unrecognized UPDATE command: %d", command);
                 break;
         }
         if (updateRowsAffected != QUERY_FAILURE) {
-            printf("{RowsAffected: %d}", updateRowsAffected);
+            printf("{\"RowsAffected\": %d}", updateRowsAffected);
         }
     }
 

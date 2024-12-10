@@ -30,8 +30,9 @@ MYSQL_RES* GetEvents(MYSQL* conn, int userId) {
 	//First grabs the event table filtered by ID, then resolves the Category IDs to Category Name.
 	sprintf(query,
 		"SELECT e.EventID, e.Name, e.Date, c.Name AS 'Category' "
-		"FROM (SELECT * FROM `event` e2 WHERE e2.UserID = %d) AS e "
-		"LEFT JOIN category c ON e.EventID = c.CategoryID;",
+		"FROM `event` e "
+		"LEFT JOIN category c ON c.CategoryID = e.CategoryID "
+		"WHERE e.UserID = %d;",
 		userId);
 
 	if (mysql_query(conn, query) != 0)

@@ -82,14 +82,17 @@ async function AddRow(event){
 //EDIT GIFT STUFF
 //
 function ShowEditModal(event){
-    if(selectedRow != null){
-        id('editModal').style.display = "flex";
-        id('editRecipientForm').reset();
-
-        id('editFirstName').value = selectedRow.cells[1].textContent;
-        id('editLastName').value = selectedRow.cells[2].textContent;
-        id('editDateOfBirth').value = selectedRow.cells[3].textContent;
+    if (!selectedRow) {
+        alert("Please select a row to edit.");
+        return;
     }
+    id('editModal').style.display = "flex";
+    id('editRecipientForm').reset();
+
+    id('editFirstName').value = selectedRow.cells[1].textContent;
+    id('editLastName').value = selectedRow.cells[2].textContent;
+    id('editDateOfBirth').value = selectedRow.cells[3].textContent;
+    
 }
 function HideEditModal(event){
     id('editModal').style.display = "none";

@@ -167,3 +167,26 @@ int UpdateLocation(MYSQL* conn, char* locationID, char* name, char* webAddress, 
 
 	return mysql_affected_rows(conn);
 }
+
+
+int UpdateUser(MYSQL* conn, char* userId, char* password, char* firstName, char* lastName, char* email, char* phone) {
+
+	char query[QUERY_BUFFER];
+	sprintf(query,
+		"UPDATE `user` SET "
+		"`password` = %s, "
+		"firstName = %s, "
+		"lastName = %s, "
+		"email = %s, "
+		"phone = %s, "
+		"WHERE userID = %s; ",
+		password, firstName, lastName, email, phone, userId);
+
+	if (mysql_query(conn, query) != 0)
+	{
+		PrintSQLError(conn, "UpdateGift()");
+		return QUERY_FAILURE;
+	}
+
+	return mysql_affected_rows(conn);
+}

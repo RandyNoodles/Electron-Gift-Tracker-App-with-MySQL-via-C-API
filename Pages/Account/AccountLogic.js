@@ -3,6 +3,35 @@ window.addEventListener('load', init);
 function init(){
     id('signout').addEventListener('click', SignOut);
     RefreshAccountDetails();
+
+    id('openModal').addEventListener('click', ShowEditModal);
+    id('editUserForm').addEventListener('submit', EditUser);
+    id('closeEditModalBtn').addEventListener('click', HideEditModal);
+    id('cancelModal').addEventListener('click', HideEditModal);
+}
+
+function ShowEditModal(){
+  id('editModal').style.display = "flex";
+
+  id('editUsername').value = id('displayUsername').innerText;
+  id('editPassword').value = "";
+  id('editFirstName').value = id('displayFirstName').innerText;
+  id('editLastName').value = id('displayLastName').innerText;
+  id('editEmail').value = id('displayEmail').innerText;
+  id('editPhoneNum').value = id('displayPhoneNum').innerText;
+}
+
+function HideEditModal(){
+  id('editModal').style.display = "none";
+  id('editUserForm').reset();
+}
+
+function EditUser(){
+
+  let
+
+
+
 }
 
 async function SignOut(event){
@@ -44,43 +73,13 @@ function PopulateAccountDetails(output) {
   
     const user = output[0];
   
-    // Create the HTML table as a string
-    const tableHTML = `
-      <table>
-        <tr>
-          <td colspan="1"><label for="username">Username:</label></td>
-          <td colspan="5"><p>${user.UserName}</p></td>
-        </tr>
-        <tr>
-          <td colspan="1"><label for="password">Password:</label></td>
-          <td colspan="5"><p>********</p></td>
-        </tr>
-        <tr>
-          <td colspan="1"><label for="firstName">First Name:</label></td>
-          <td colspan="5"><p>${user.FirstName}</p></td>
-        </tr>
-        <tr>
-          <td colspan="1"><label for="lastName">Last Name:</label></td>
-          <td colspan="5"><p>${user.LastName}</p></td>
-        </tr>
-        <tr>
-          <td colspan="1"><label for="email">Email:</label></td>
-          <td colspan="5"><p>${user.Email}</p></td>
-        </tr>
-        <tr>
-          <td colspan="1"><label for="phoneNum">Phone Number:</label></td>
-          <td colspan="5"><p>${user.PhoneNumber}</p></td>
-        </tr>
-        <tr>
-          <td colspan="6" style="text-align: center;">
-            <button id="openModal" class="navButton">Edit Account</button>
-            <button id="signout" class="navButton">Sign Out</button>
-          </td>
-        </tr>
-      </table>
-    `;
-  
-    // Set the innerHTML of the container to the generated table
-    document.getElementById('accountDetailsContainer').innerHTML = tableHTML;
+    let phoneNum = (user.PhoneNumber == "null") ? "" : user.PhoneNumber;
+
+    id('displayUsername').innerText = `${user.UserName}`
+    id('displayFirstName').innerText = `${user.FirstName}`
+    id('displayLastName').innerText = `${user.LastName}`
+    id('displayEmail').innerText = `${user.Email}`
+    id('displayPhoneNum').innerText = `${phoneNum}`
+
   }
   

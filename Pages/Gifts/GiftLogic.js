@@ -12,10 +12,12 @@ function init(){
     id('addRowBtn').addEventListener('click', ShowAddModal);
     id('addGiftForm').addEventListener('submit', AddRow);
     id('closeAddModalBtn').addEventListener('click', HideAddModal);
+    id('cancelModal').addEventListener('click', HideAddModal);
 
     id('editRowBtn').addEventListener('click', ShowEditModal);
     id('editGiftForm').addEventListener('submit', EditRow);
     id('closeEditModalBtn').addEventListener('click', HideEditModal);
+    id('cancelEditModal').addEventListener('click', HideEditModal);
 
     id('deleteRowBtn').addEventListener('click', DeleteRow);
 }
@@ -80,7 +82,6 @@ async function AddRow(event){
 
     let args = [200, name, cost, statusID, recipientID, eventID, locationID, userID];
 
-
     const response = await window.backend.CallDB(args);
 
     if(response.success){
@@ -94,20 +95,24 @@ async function AddRow(event){
 //EDIT GIFT STUFF
 //
 function ShowEditModal(event){
-    if(selectedRow != null){
-        id('editModal').style.display = "flex";
-        id('editGiftForm').reset();
-        id('editName').value = selectedRow.cells[1].textContent;
-        id('editCost').value = selectedRow.cells[2].textContent;
-        PopulateRecipientDropdown(id('editRecipientId'));
-        PopulateEventDropdown(id('editEventId'));
-        PopulateStatusDropdown(id('editStatusId'));
+    if (!selectedRow) {
+        alert("Please select a row to edit.");
+        return;
     }
+    id('editModal').style.display = "flex";
+    id('editGiftForm').reset();
+    id('editName').value = selectedRow.cells[1].textContent;
+    id('editCost').value = selectedRow.cells[2].textContent;
+    PopulateRecipientDropdown(id('editRecipientId'));
+    PopulateEventDropdown(id('editEventId'));
+    PopulateStatusDropdown(id('editStatusId'));
 }
+
 function HideEditModal(event){
     id('editModal').style.display = "none";
     document.getElementById("addGiftForm").reset();
 }
+
 async function EditRow(event){
     event.preventDefault();
 
@@ -147,7 +152,7 @@ async function RefreshGiftTable(){
             tableContainer.innerHTML = '<p>No gifts created</p>';
             return;
         }
-        
+
         tableContainer.innerHTML = "";
 
         if(response.success){

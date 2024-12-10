@@ -52,8 +52,19 @@ int AddRecipient(MYSQL* conn, char* firstName, char* lastName, char* dateOfBirth
 }
 
 int AddCategory(MYSQL* conn, char* name) {
-	fprintf(stderr, "Function not implemented.");
-	return QUERY_FAILURE;
+	char query[QUERY_BUFFER];
+
+	sprintf(query,
+		"INSERT INTO `category` (`name`) "
+		"VALUES "
+		"(%s);",
+		name);
+
+	if (mysql_query(conn, query) != 0) {
+		PrintSQLError(conn, "AddRecipient(): ");
+		return QUERY_FAILURE;
+	}
+	return mysql_insert_id(conn);
 }
 
 int AddLocation(MYSQL* conn, char* name, char* webAddress, char* physicalLocation) {

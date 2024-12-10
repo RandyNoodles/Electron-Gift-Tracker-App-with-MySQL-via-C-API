@@ -28,14 +28,12 @@ function createTableFromJSON(data) {
         headers.forEach(header => {
 
             const td = tr.insertCell();
-            if(row[header] == null){
+            if(row[header] == null || row[header] == "null"){
                 td.textContent = "";
             }
             else{
                 td.textContent = row[header];
             }
-            console.log("row[header]: ".concat(row[header]));
-            console.log("headers[0]: ".concat(headers[0]));
             if (header === headers[0]) {
                 td.classList.add('hiddenCell');
             }
@@ -94,11 +92,12 @@ async function PopulateRecipientDropdown(dropdown){
     const response = await window.backend.CallDB(args);
     if(response.success){
         if(response.output == "[]"){
-            dropdown.innerHTML = `<option value="null">PLEASE ADD A RECIPIENT TO CONTINUE</option>`;
+            dropdown.innerHTML = `<option value="null">No recipients created</option>`;
             return;
         }
 
         let parsedResponse = JSON.parse(response.output);
+        dropdown.innerHTML = `<option value="null">No recipient selected</option>`;
 
         parsedResponse.forEach(recipient => {
             const option = document.createElement("option");
@@ -116,7 +115,7 @@ async function PopulateEventDropdown(dropdown){
     const response = await window.backend.CallDB(args);
     if(response.success){
         if(response.output == "[]"){
-            dropdown.innerHTML = `<option value="null">No event selected</option>`;
+            dropdown.innerHTML = `<option value="null">No events created</option>`;
 
             return;
         }

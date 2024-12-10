@@ -24,110 +24,82 @@
         <div id="error" class="error-message" style="display: none;"></div>
         <table>
             <tr>
-                <td colspan="1"><label for="name">Username:</label></td>
-                <td colspan="5"><p>Username here</p></td>
-            </tr>
-
-            <tr>
-                <td colspan="1"><label for="password">Password:</label></td>
-                <td colspan="5"><p>********</p></td>
+              <td colspan="1"><label for="displayUsername">Username:</label></td>
+              <td colspan="5"><p id="displayUsername">${user.UserName}</p></td>
             </tr>
             <tr>
-                <td colspan="1"><label for="firstName">First Name</label></td>
-                <td colspan="5"><p>John</p></td>
+              <td colspan="1"><label for="password">Password:</label></td>
+              <td colspan="5"><p>********</p></td>
             </tr>
             <tr>
-                <td colspan="1"><label for="lastName">Last Name</label></td>
-                <td colspan="5"><p>Fallout</p></td>
+              <td colspan="1"><label for="displayFirstName">First Name:</label></td>
+              <td colspan="5"><p id="displayFirstName">${user.FirstName}</p></td>
             </tr>
             <tr>
-                <td colspan="1"><label for="email">Email:</label></td>
-                <td colspan="5"><p>JohnFallout@friendmail.com</p></td>
+              <td colspan="1"><label for="displayLastName">Last Name:</label></td>
+              <td colspan="5"><p id="displayLastName">${user.LastName}</p></td>
             </tr>
-
             <tr>
-                <td colspan="1"><label for="phoneNum">Phone Number</label></td>
-                <td colspan="5"><p>555-867-5309</p></td>
+              <td colspan="1"><label for="displayEmail">Email:</label></td>
+              <td colspan="5"><p id="displayEmail">${user.Email}</p></td>
             </tr>
-            <!-- Recipient ID, Event ID, and Location ID Row -->
-            
-            <!-- Submit Button Row -->
-        </table>
-        <tr>
-            <td colspan="6" style="text-align: center;">
-            <button id="openModal" class="navButton">Edit Account</button>
-            <button id="signout" class="navButton">Sign Out</button>
-                
-            </td>
-        </tr>
+            <tr>
+              <td colspan="1"><label for="displayPhoneNum">Phone Number:</label></td>
+              <td colspan="5"><p id="displayPhoneNum">${user.PhoneNumber}</p></td>
+            </tr>
+            <tr>
+              <td colspan="6" style="text-align: center;">
+                <button id="openModal" class="navButton">Edit Account</button>
+                <button id="signout" class="navButton">Sign Out</button>
+              </td>
+            </tr>
+          </table>
     </div>
     
-    <div id="myModal" class="modal">
+    <div id="editModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span id="closeEditModalBtn" class="close">&times;</span>
             <h1>Edit Account</h1>
             <div id="editError" class="error-message" style="display: none;"></div>
-                <table>
-                    <!-- Name Row -->
-                    <tr>
-                        <td colspan="1"><label for="name">UserName:</label></td>
-                        <td colspan="5"><input type="text" id="name" name="name" required></td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"><label for="password">Password:</label></td>
-                        <td colspan="5"><input type="text" id="name" name="name" required></td>
-                    </tr>
-                    <!-- Cost and Status ID Row -->
-                    <tr>
-                        <td colspan="1"><label for="firstName">First Name</label></td>
-                        <td colspan="5"><input type="text" id="firstName" name="firstName" required></td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"><label for="lastName">Last Name</label></td>
-                        <td colspan="5"><input type="text" id="lastName" name="lastName"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"><label for="email">Email:</label></td>
-                        <td colspan="5"><input type="text" id="email" name="email"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="1"><label for="phoneNum">Phone Number</label></td>
-                        <td colspan="5"><input type="text" id="phoneNum" name="phoneNum"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="text-align: center;">
-                            <button type="submit" class="navButton">Edit Account</button>
-                        </td>
-                        <td colspan="3" style="text-align: center;">
-                            <button type="submit" id="cancelModal" class="navButton">Cancel</button>
-                        </td>
-                    </tr>
-                </table>
+                <form id="editUserForm">
+                    <table>
+                        <!-- Name Row -->
+                        <tr>
+                            <td colspan="1"><label for="editUsername">UserName:</label></td>
+                            <td colspan="5"><input type="text" id="editUsername" name="editUsername" disabled></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="editPassword">New Password:</label></td>
+                            <td colspan="5"><input type="text" id="editPassword" name="editPassword" required></td>
+                        </tr>
+                        <!-- Cost and Status ID Row -->
+                        <tr>
+                            <td colspan="1"><label for="editFirstName">First Name</label></td>
+                            <td colspan="5"><input type="text" id="editFirstName" name="editFirstName" required></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="editLastName">Last Name</label></td>
+                            <td colspan="5"><input type="text" id="editLastName" name="editLastName" required></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="editEmail">Email:</label></td>
+                            <td colspan="5"><input type="text" id="editEmail" name="editEmail" required></td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="editPhoneNum">Phone Number</label></td>
+                            <td colspan="5"><input type="text" id="editPhoneNum" name="editPhoneNum"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: center;">
+                                <button type="submit" class="navButton">Edit Account</button>
+                            </td>
+                            <td colspan="3" style="text-align: center;">
+                                <button type="button" id="cancelModal" class="navButton">Cancel</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
         </div>
     </div>
-    
-    <script>
-        // Modal Handling
-        const modal = document.getElementById("myModal");
-        const openModalBtn = document.getElementById("openModal");
-        const closeModalBtn = document.querySelector(".close");
-    
-        // Open the modal
-        openModalBtn.onclick = function () {
-            modal.style.display = "flex";
-        };
-    
-        // Close the modal
-        closeModalBtn.onclick = function () {
-            modal.style.display = "none";
-        };
-    
-        // Close modal on clicking outside of it
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };
-    </script>
     </body>
     </html>

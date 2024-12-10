@@ -15,12 +15,12 @@ function HideNewUserModal(){
 }
 
 function SwitchToCreateAccount(){
-    id('newUserModal').style.display = "inline";
+    id('newUserModal').style.display = "flex";
 }
 
 function SwitchToLogin(){
     id('newUserModal').style.display = "none";
-    id('loginForm').style.display = "flex";
+    id('loginForm').style.display = "inline";
 }
 
 function ClearCreateAccountForm(){
@@ -58,11 +58,11 @@ async function CreateAccount(event){
             SwitchToLogin();
         }
         else{
-            displayError(`CreateAccount() failed: ${response.output}`);
+             id('loginError').innerText = `CreateAccount() failed: ${response.output}`;
         }
     }
     catch(error){
-        displayError("CreateAccount() failed to call the MySQL API.");
+        id('loginError').innerText = "CreateAccount() failed to call the MySQL API.";
     }
 }
 
@@ -86,15 +86,15 @@ async function SignIn(event){
                 querySuccess = true;
             }
             catch(parseError){
-                displayError(`Failed to parse JSON on SignIn(): ${parseError}`);                
+                 id('loginError').innerText = `Failed to parse JSON on SignIn(): ${parseError}`;                
             }
         }
         else{
-            displayError(`Invalid query: ${response.output}`);           
+             id('loginError').innerText = `Invalid query: ${response.output}`;           
         }
     }
     catch(error){
-        displayError("SignIn() failed to call the MySQL API.");
+         id('loginError').innerText = "SignIn() failed to call the MySQL API.";
     }
 
     if(querySuccess){

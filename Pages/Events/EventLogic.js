@@ -9,6 +9,8 @@ function init(){
     RefreshEventTable();
     id('eventTableContainer').addEventListener('click', SelectRow);
 
+    id('addNewCategoryCheckbox').addEventListener('click', ToggleNewCategoryField);
+
     id('addRowBtn').addEventListener('click', ShowAddModal);
     id('addEventForm').addEventListener('submit', AddRow);
     id('closeAddModalBtn').addEventListener('click', HideAddModal);
@@ -21,6 +23,31 @@ function init(){
     
     id('deleteRowBtn').addEventListener('click', DeleteRow);
 }
+
+function ToggleNewCategoryField() {
+    const checkbox = document.getElementById('addNewCategoryCheckbox');
+    const inputField = document.getElementById('addNewCategory');
+    const selectField = document.getElementById('addCategoryId');
+
+    if (checkbox.checked) {
+        //turn on input
+        inputField.style.display = 'block';
+        inputField.required = true;
+        //turn off dropdown
+        selectField.disabled = true;
+        selectField.required = false;
+        
+    } else {
+        //turn off input
+        inputField.style.display = 'none';
+        inputField.required = false;
+        //turn on dropdown
+        selectField.disabled = false;
+        selectField.required = true;
+    }
+}
+
+
 
 async function DeleteRow(){
     
@@ -64,13 +91,33 @@ function HideAddModal(event){
 async function AddRow(event){
     event.preventDefault();
 
+
     let name = argString(id('addName').value);
     let date = argString(id('addDate').value);
     let categoryID = id('addCategoryId').value;
     let userId = await window.backend.GetCurrentUserID();
 
-    let args = [201, name, date, categoryID, userId];
 
+    let newCategoryResponse = null;
+    const checkbox = id('addNewCategoryCheckbox').checked;
+    if(checkbox){
+        let newCategory = argString(id('addNewCategory').value);
+        let args2 = [203, newCategory];
+
+        newCategoryResponse = await window.backend.CallDB(args2);
+        
+        if(newCategoryResponse.success){
+            newCategoryID = JSON.parse(newCategoryResponse.output);
+            categoryID = newCategoryID.AddedItemID;
+        }
+        else{
+            id('addError').innerHTML = `<p>Error adding new category: ${newCategoryResponse.output}</p>`;
+            return;
+        }
+
+    }
+
+    let args = [201, name, date, categoryID, userId];
 
     const response = await window.backend.CallDB(args);
 
@@ -85,7 +132,7 @@ async function AddRow(event){
 //
 function ShowEditModal(event){
     if (!selectedRow) {
-        alert("Please select a row to delete.");
+        alert("Please select a row to edit.");
         return;
     }
     id('editModal').style.display = "flex";

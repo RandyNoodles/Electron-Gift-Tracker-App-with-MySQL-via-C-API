@@ -34,7 +34,7 @@
           <input type="text" id="username" placeholder="Username" required />
           <input type="password" id="password" placeholder="Password" required />
           <button class="navButton" type="submit" id="loginButton">Login</button>
-          <p id="loginError" class="errorTxt"></p>
+          <p id="loginError" class="error-message"></p>
         </form>
         <button class="navButton"id="showCreateAccountForm">Create an Account</button>
       </div>
@@ -47,12 +47,11 @@
             <input type="text" id="newUserFirstName" placeholder="First Name" required />
             <input type="text" id="newUserLastName" placeholder="Last Name" required />
             <input type="email" id="newUserEmail" placeholder="Email" required />
-            <input type="tel" id="newUserPhone" placeholder="Phone Number" required />
+            <input type="tel" id="newUserPhone" placeholder="Phone Number" />
             <button type="submit" id="createAccountButton">Create Account</button>
-            <p id="newUserError" class="errorTxt"></p>
+            <p id="newUserError" class="error-message"></p>
           </form>
           <button id="backToLoginButton">Back to Login</button>
-          <p id="newUserError" class="errorTxt"></p>
         </div>
       </div>
       <!-- New User Form -->
