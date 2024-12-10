@@ -88,10 +88,10 @@ int main(int argc, char* argv[]) {
                 queryResult = GetStatuses(conn, userID);
                 break;
             case GET_CATEGORIES:
-                //Handle GET_CATEGORIES
+                queryResult = GetCategories(conn, userID);
                 break;
             case GET_LOCATIONS:
-                // Handle GET_LOCATIONS
+                queryResult = GetPurchaseLocations(conn, userID);
                 break;
             case GET_USER:
                 queryResult = GetUser(conn, userID);
@@ -140,11 +140,11 @@ int main(int argc, char* argv[]) {
         switch (command) {
         case ADD_GIFT:
             //name, cost, statusID, recipientID, eventID, locationID
-            if (argc != 8) {
+            if (argc != 9) {
                 fprintf(stderr, "Invalid arg count for ADD_GIFT command.");
             }
             else {
-                addedItemID = AddGift(conn, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7]);
+                addedItemID = AddGift(conn, argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], argv[8]);
             }
             break;
         case ADD_EVENT:

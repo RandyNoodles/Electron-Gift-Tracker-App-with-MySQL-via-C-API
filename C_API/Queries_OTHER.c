@@ -30,7 +30,6 @@ int ItemExists(MYSQL* conn, char* tableName, char* itemID) {
 		return NO_RESULT;
 	}
 
-	free(result);
 	return SUCCESS;
 }
 
@@ -109,7 +108,6 @@ int IsUniversal(MYSQL* conn, char* tableName, char* itemID) {
 	}
 
 
-	free(result);
 	return SUCCESS;
 }
 

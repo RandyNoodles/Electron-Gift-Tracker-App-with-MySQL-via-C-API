@@ -94,18 +94,15 @@ async function PopulateRecipientDropdown(dropdown){
     const response = await window.backend.CallDB(args);
     if(response.success){
         if(response.output == "[]"){
+            dropdown.innerHTML = `<option value="null">PLEASE ADD A RECIPIENT TO CONTINUE</option>`;
             return;
         }
 
         let parsedResponse = JSON.parse(response.output);
 
-        
-        dropdown.innerHTML = `<option value="">No recipient selected</option>`;
-
-
         parsedResponse.forEach(recipient => {
             const option = document.createElement("option");
-            option.value = recipient.recipientID;
+            option.value = recipient.RecipientID;
             option.textContent = `${recipient.FirstName} ${recipient.LastName}`;
             dropdown.appendChild(option);
         })
@@ -119,17 +116,19 @@ async function PopulateEventDropdown(dropdown){
     const response = await window.backend.CallDB(args);
     if(response.success){
         if(response.output == "[]"){
+            dropdown.innerHTML = `<option value="null">No event selected</option>`;
+
             return;
         }
 
         let parsedResponse = JSON.parse(response.output);
 
-        dropdown.innerHTML = `<option value="">No event selected</option>`;
+        dropdown.innerHTML = `<option value="null">No event selected</option>`;
 
 
         parsedResponse.forEach(event => {
             const option = document.createElement("option");
-            option.value = event.eventID;
+            option.value = event.EventID;
             option.textContent = `${event.Name}`;
             dropdown.appendChild(option);
         })
@@ -138,39 +137,43 @@ async function PopulateEventDropdown(dropdown){
 
 async function PopulatePurchaseLocationDropdown(dropdown) {
     let userID = await window.backend.GetCurrentUserID();
-    let args = [104, userID]; // Assuming 104 is the code for purchase locations
+    let args = [105, userID];
 
     const response = await window.backend.CallDB(args);
     if (response.success) {
         if (response.output === "[]") {
+            dropdown.innerHTML = `<option value="null">No purchase location selected</option>`;
+
             return;
         }
 
         let parsedResponse = JSON.parse(response.output);
 
-        dropdown.innerHTML = `<option value="">No purchase location selected</option>`;
+        dropdown.innerHTML = `<option value="null">No purchase location selected</option>`;
 
         parsedResponse.forEach(location => {
             const option = document.createElement("option");
-            option.value = location.LocationID;
-            option.textContent = location.LocationName;
+            option.value = location.PurchaseLocationID;
+            option.textContent = location.Name;
             dropdown.appendChild(option);
         });
     }
 }
 async function PopulateCategoryDropdown(dropdown) {
     let userID = await window.backend.GetCurrentUserID();
-    let args = [105, userID]; // Assuming 105 is the code for categories
+    let args = [104, userID];
 
     const response = await window.backend.CallDB(args);
     if (response.success) {
         if (response.output === "[]") {
+            dropdown.innerHTML = `<option value="null">No category selected</option>`;
+
             return;
         }
 
         let parsedResponse = JSON.parse(response.output);
 
-        dropdown.innerHTML = `<option value="">No category selected</option>`;
+        dropdown.innerHTML = `<option value="null">No category selected</option>`;
 
         parsedResponse.forEach(category => {
             const option = document.createElement("option");

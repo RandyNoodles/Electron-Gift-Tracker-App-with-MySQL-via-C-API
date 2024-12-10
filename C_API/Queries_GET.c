@@ -7,11 +7,10 @@ MYSQL_RES* GetGifts(MYSQL* conn, int userId) {
 	sprintf(query,
 		"SELECT g.GiftID, g.`name`, g.cost,  s.`status` AS `status`, CONCAT(r.firstName, r.lastName) AS 'recipient', e.Name AS 'event' "
 		"FROM gift g "
-		"JOIN recipient r ON r.RecipientID = g.RecipientID "
-		"JOIN `user` u ON u.UserID = r.UserID "
-		"JOIN `status` s ON s.StatusID = g.StatusID "
-		"JOIN `event` e ON e.EventID = g.EventId "
-		"WHERE u.UserID = %d "
+		"LEFT JOIN recipient r ON r.RecipientID = g.RecipientID "
+		"LEFT JOIN `status` s ON s.StatusID = g.StatusID "
+		"LEFT JOIN `event` e ON e.EventID = g.EventId "
+		"WHERE g.UserID = %d "
 		"ORDER BY s.StatusID;",
 		userId);
 
@@ -85,7 +84,7 @@ MYSQL_RES* GetUser(MYSQL* conn, int userID) {
 	return mysql_store_result(conn);
 }
 
-MYSQL_RES* GetPurchasedLocations(MYSQL* conn, int userID)
+MYSQL_RES* GetPurchaseLocations(MYSQL* conn, int userID)
 {
 	char query[QUERY_BUFFER];
 	sprintf(query,
