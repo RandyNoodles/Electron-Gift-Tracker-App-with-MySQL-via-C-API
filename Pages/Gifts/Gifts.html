@@ -44,22 +44,38 @@
             <form id="addGiftForm">
                 <table>
                     <tr>
-                        <td><label for="name">Gift Name:</label></td>
-                        <td colspan="2"><input type="text" id="name" name="name" required></td>
+                        <td><label for="addName">Gift Name:</label></td>
+                        <td colspan="2"><input type="text" id="addName" name="addName" required></td>
                     </tr>
                     <tr>
-                        <td><label for="recipientId">Recipient ID:</label></td>
-                        <td colspan="2"><input type="number" id="recipientId" name="recipientId" required></td>
+                        <td><label for="addStatusId">Status:</label></td>
+                        <td colspan="2">
+                            <select id="addStatusId" name="addStatusId" required>
+                            </select>
                     </tr>
                     <tr>
-                        <td><label for="eventId">event ID:</label></td>
-                        <td colspan="2"><input type="number" id="evenId" name="eventId" required></td>
+                        <td><label for="addRecipientId">Recipient:</label></td>
+                        <td colspan="2">
+                            <select id="addRecipientId" name="addRecipientId">
+                            </select>
                     </tr>
                     <tr>
-                        <td><label for="cost">Cost:</label></td>
-                        <td colspan="2"><input type="number" id="cost" name="cost" required></td>
+                        <td><label for="addEventId">Event:</label></td>
+                        <td colspan="2">
+                            <select id="addEventId" name="addEventId">
+                            </select>
                     </tr>
-                    
+                    <tr>
+                        <td><label for="addCost">Cost:</label></td>
+                        <td colspan="2">
+                            <input type="number" id="addCost" name="addCost"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="addPurchaseLocationID">Purchase Location:</label></td>
+                        <td colspan="2">
+                            <select id="addPurchaseLocationID" name="addPurchaseLocationID">
+                            </select>
+                    </tr>
                     <tr>
                         <td colspan="2" style="text-align: center;">
                             <button type="submit" class="navButton">Add Gift</button>

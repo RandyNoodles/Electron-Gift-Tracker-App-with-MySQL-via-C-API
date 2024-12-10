@@ -2,15 +2,15 @@
 #pragma warning(disable: 4996)
 
 int AddGift(MYSQL* conn, char* name, char* cost,
-	char* statusID, char* recipientID, char* eventID, char* locationID) {
+	char* statusID, char* recipientID, char* eventID, char* locationID, char* userID) {
 	char query[QUERY_BUFFER];
 
 	sprintf(query,
 		"INSERT INTO gift "
-		"(`Name`, Cost, StatusID, RecipientID, EventID, PurchaseLocationID) "
+		"(`Name`, Cost, StatusID, RecipientID, EventID, PurchaseLocationID, UserID) "
 		"VALUES "
-		"(%s, %s, %s, %s, %s, %s);",
-		name, cost, statusID, recipientID, eventID, locationID);
+		"(%s, %s, %s, %s, %s, %s, %s);",
+		name, cost, statusID, recipientID, eventID, locationID, userID);
 
 	if (mysql_query(conn, query) != 0) {
 		PrintSQLError(conn, "AddGift(): ");

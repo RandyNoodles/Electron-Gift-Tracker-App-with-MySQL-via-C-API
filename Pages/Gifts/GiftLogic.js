@@ -25,13 +25,41 @@ function init(){
 function ShowAddModal(event){
     id('addModal').style.display = "flex";
     id('addGiftForm').reset();
+
+    PopulateEventDropdown(id('addEventId'));
+    PopulatePurchaseLocationDropdown(id('addPurchaseLocationID'));
+    PopulateRecipientDropdown(id('addRecipientId'));
+    PopulateStatusDropdown(id('addStatusId'));
 }
 function HideAddModal(event){
     id('addModal').style.display = "none";
     document.getElementById("addGiftForm").reset();
 }
-function AddRow(event){
+async function AddRow(event){
     event.preventDefault();
+
+    let name = argString(id('addName').value);
+    let cost = id('addCost').value;
+    if(cost == ""){
+        cost = null;
+    }
+
+    let statusID = id('addStatusId').value;
+    let recipientID = id('addRecipientId').value;
+    let eventID = id('addEventId').value;
+    let locationID = id('addPurchaseLocationID').value;
+    let userID = await window.backend.GetCurrentUserID();
+
+    let args = [200, name, cost, statusID, recipientID, eventID, locationID, userID];
+
+
+    const response = await window.backend.CallDB(args);
+
+    if(response.success){
+        HideAddModal();
+        RefreshGiftTable();
+        selectedRow = null;
+    }
 }
 
 
@@ -63,11 +91,17 @@ async function EditRow(event){
     let statusID = id('editStatusId').value;
     let purchaseLocationID = 1;
 
-    let args = [giftID, name, cost, statusID, recipientID, eventID, purchaseLocationID];
+    let args = [300, giftID, name, cost, statusID, recipientID, eventID, purchaseLocationID];
 
-    let response = await window.backend.CallDB(args);
+    const response = await window.backend.CallDB(args);
 
-    
+    if(response.success){
+        //SOME KIND OF FEEDBACK
+        HideEditModal();
+        RefreshGiftTable();
+        selectedRow = null;
+    }
+
 
 }
 

@@ -9,7 +9,7 @@
 //Return ID of added row in case of success (positive int)
 
 int AddGift(MYSQL* conn, char* name, char* cost, 
-	char* statusID, char* recipientID, char* eventID, char* locationID);
+	char* statusID, char* recipientID, char* eventID, char* locationID, char* userID);
 
 int AddEvent(MYSQL* conn, char* name, char* date, char* categoryID, char* userID);
 
