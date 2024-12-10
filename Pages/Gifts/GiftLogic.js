@@ -31,19 +31,22 @@ function HideAddModal(event){
 }
 function AddRow(event){
     event.preventDefault();
-
 }
 
 
 //EDIT GIFT STUFF
 //
 function ShowEditModal(event){
-    id('editModal').style.display = "flex";
-    id('editGiftForm').reset();
-    id('editName').value = selectedRow.cells[1].textContent;
-    id('editCost').value = selectedRow.cells[2].textContent;
-    GetRecipientList();
-    GetEventList();
+    if(selectedRow != null){
+        id('editModal').style.display = "flex";
+        id('editGiftForm').reset();
+        id('editName').value = selectedRow.cells[1].textContent;
+        id('editCost').value = selectedRow.cells[2].textContent;
+        PopulateRecipientDropdown(id('editRecipientId'));
+        PopulateEventDropdown(id('editEventId'));
+        PopulateStatusDropdown(id('editStatusId'));
+        
+    }
 }
 function HideEditModal(event){
     id('editModal').style.display = "none";
@@ -54,57 +57,6 @@ function EditRow(event){
 }
 
 
-
-
-async function GetRecipientList(){
-    let userID = await window.backend.GetCurrentUserID();
-    let args = [102, userID];
-
-    const response = await window.backend.CallDB(args);
-    if(response.success){
-        if(response.output == "[]"){
-            return;
-        }
-
-        let parsedResponse = JSON.parse(response.output);
-
-        let dropdown = document.getElementById('editRecipientId');
-        dropdown.innerHTML = `<option value="">No recipient selected</option>`;
-
-
-        parsedResponse.forEach(recipient => {
-            const option = document.createElement("option");
-            option.value = recipient.recipientID;
-            option.textContent = `${recipient.FirstName} ${recipient.LastName}`;
-            dropdown.appendChild(option);
-        })
-    }
-}
-
-async function GetEventList(){
-    let userID = await window.backend.GetCurrentUserID();
-    let args = [101, userID];
-
-    const response = await window.backend.CallDB(args);
-    if(response.success){
-        if(response.output == "[]"){
-            return;
-        }
-
-        let parsedResponse = JSON.parse(response.output);
-
-        let dropdown = document.getElementById('editEventId');
-        dropdown.innerHTML = `<option value="">No event selected</option>`;
-
-
-        parsedResponse.forEach(event => {
-            const option = document.createElement("option");
-            option.value = event.eventID;
-            option.textContent = `${event.Name}`;
-            dropdown.appendChild(option);
-        })
-    }
-}
 
 
 
