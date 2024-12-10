@@ -23,6 +23,7 @@
 
     <!-- Content -->
     <div class="container">
+        <div id="error" class="error-message" style="display: none;"></div>
         <h1>Your Gifts</h1>
 
         <div class="tableButtons">
@@ -42,6 +43,7 @@
             <span id="closeAddModalBtn" class="close">&times;</span>
             <h1>Add Gift</h1>
             <form id="addGiftForm">
+                <div id="addError" class="error-message" style="display: none;"></div>
                 <table>
                     <tr>
                         <td><label for="addName">Gift Name:</label></td>
@@ -93,6 +95,7 @@
             <span id="closeEditModalBtn"class="close">&times;</span>
             <h1>Edit Gift</h1>
             <form id="editGiftForm">
+                <div id="editError" class="error-message" style="display: none;"></div>
                 <table>
                     <tr>
                         <td><label for="editName">Gift Name:</label></td>

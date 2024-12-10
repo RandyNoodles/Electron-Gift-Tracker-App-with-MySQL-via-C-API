@@ -19,6 +19,7 @@
     </nav>
 
     <div class="container">
+        <div id="error" class="error-message" style="display: none;"></div>
         <h1>Your Loved Ones</h1>
 
         <div class="tableButtons">
@@ -43,6 +44,7 @@
             <span id="closeAddModalBtn" class="close">&times;</span>
             <h1>Add Loved One</h1>
             <form id="addRecipientForm">
+                <div id="addError" class="error-message" style="display: none;"></div>
                 <table>
                     <!-- Name Row -->
                     <tr>
@@ -76,6 +78,7 @@
             <span id="closeEditModalBtn"class="close">&times;</span>
             <h1>Edit Recipient</h1>
             <form id="editRecipientForm">
+                <div id="editError" class="error-message" style="display: none;"></div>
                 <table>
                     <tr>
                         <td><label for="editFirstName">First Name:</label></td>

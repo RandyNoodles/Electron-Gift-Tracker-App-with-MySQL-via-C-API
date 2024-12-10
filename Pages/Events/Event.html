@@ -20,6 +20,7 @@
     </nav>
 
     <div class="container">
+        <div id="error" class="error-message" style="display: none;"></div>
         <h1>Your Events</h1>
 
         <div class="tableButtons">
@@ -38,6 +39,8 @@
             <span id="closeAddModalBtn" class="close">&times;</span>
             <h1>Add Event</h1>
             <form id="addEventForm">
+                <!-- Error Section -->
+            <div id="addError" class="error-message" style="display: none;"></div>
                 <table>
                     <!-- Name Row -->
                     <tr>
@@ -46,12 +49,23 @@
                     </tr>
                     <!-- Cost and Status ID Row -->
                     <tr>
-                        <td><label for="addDate">Date:</label></td>
-                        <td colspan="2"><input type="text" id="addDate" name="addDate" required></td>
-                        <td><label for="addCategoryId">Category ID:</label></td>
+                        <td><label for="date">Date:</label></td>
+                        <td colspan="2"><input type="text" id="date" name="date" required></td>
+                        <td><label for="categoryId">Category ID:</label></td>
                         <td colspan="2">
-                        <select id="addCategoryId" name="addCategoryId" required>
-                        </select>
+                            <select id="EventCategory" name="EventCategory" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="1">Category 1</option>
+                                <option value="2">Category 2</option>
+                            </select>
+                            <div style="display: flex; align-items: center; margin-top: 10px;">
+                                <input type="checkbox" id="addCategoryCheckbox" name="addCategoryCheckbox">
+                                <label for="addCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
+                            </div>
+                            <input type="text" id="newCategoryInput" name="newCategory" 
+                                   placeholder="Enter new category" 
+                                   style="display: none; margin-top: 10px; width: 100%;">
+                        </td>
                     </tr>
                     <!-- Submit Button Row -->
                     <tr>
@@ -70,6 +84,8 @@
             <span id="closeEditModalBtn"class="close">&times;</span>
             <h1>Edit Event</h1>
             <form id="editEventForm">
+                <!-- Error Section -->
+            <div id="editError" class="error-message" style="display: none;"></div>
                 <table>
                     <tr>
                         <td><label for="editName">Event Name:</label></td>
@@ -80,10 +96,21 @@
                         <td colspan="2"><input type="text" id="editDate" name="editDate" required></td>
                     </tr>
                     <tr>
-                        <td><label for="editCategoryId">Event Category</label></td>
-                        <td colspan="2"><select id="editCategoryId" name="editCategoryId" required>
-                        </select></td>
-                    
+                        <td><label for="editEventCategorty">Event Category</label></td>
+                        <td colspan="2">
+                            <select id="editEventCategory" name="editEventCategory" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="1">Category 1</option>
+                                <option value="2">Category 2</option>
+                            </select>
+                            <div style="display: flex; align-items: center; margin-top: 10px;">
+                                <input type="checkbox" id="editAddCategoryCheckbox" name="editAddCategoryCheckbox">
+                                <label for="editAddCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
+                            </div>
+                            <input type="text" id="editNewCategoryInput" name="editNewCategory" 
+                                   placeholder="Enter new category" 
+                                   style="display: none; margin-top: 10px; width: 100%;">
+                        </td>
                     </tr>
                         
                     <tr>
@@ -97,3 +124,29 @@
         </div>
     </div>
     
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addCategoryCheckbox = document.getElementById("addCategoryCheckbox");
+        const newCategoryInput = document.getElementById("newCategoryInput");
+        const editAddCategoryCheckbox = document.getElementById("editAddCategoryCheckbox");
+        const editNewCategoryInput = document.getElementById("editNewCategoryInput");
+    
+        // Toggle visibility of the new category input in Add Modal
+        addCategoryCheckbox.addEventListener("change", function () {
+            if (addCategoryCheckbox.checked) {
+                newCategoryInput.style.display = "block";
+            } else {
+                newCategoryInput.style.display = "none";
+            }
+        });
+    
+        // Toggle visibility of the new category input in Edit Modal
+        editAddCategoryCheckbox.addEventListener("change", function () {
+            if (editAddCategoryCheckbox.checked) {
+                editNewCategoryInput.style.display = "block";
+            } else {
+                editNewCategoryInput.style.display = "none";
+            }
+        });
+    });
+</script>
