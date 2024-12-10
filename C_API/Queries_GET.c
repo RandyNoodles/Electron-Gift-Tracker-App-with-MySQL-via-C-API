@@ -86,3 +86,51 @@ MYSQL_RES* GetUser(MYSQL* conn, int userID) {
 	}
 	return mysql_store_result(conn);
 }
+
+MYSQL_RES* GetPurchasedLocations(MYSQL* conn, int userID)
+{
+	char query[QUERY_BUFFER];
+	sprintf(query,
+		"SELECT DISTINCT pl.PurchaseLocationID, pl.`Name`, pl.WebAddress, pl.PhysicalLocation "
+		"FROM PurchaseLocation pl "
+		"WHERE pl.Universal = 1 "
+		"   OR pl.PurchaseLocationID IN ( "
+		"       SELECT g.PurchaseLocationID "
+		"       FROM Gift g "
+		"       WHERE g.PurchaseLocationID IS NOT NULL AND EXISTS ( "
+		"           SELECT 1 "
+		"           FROM `Event` e "
+		"           WHERE g.EventID = e.EventID AND e.UserID = %d "
+		"       ) "
+		");",
+		userID);
+	if (mysql_query(conn, query) != 0)
+	{
+		PrintSQLError(conn, "GetUser():");
+		return NULL;
+	}
+	return mysql_store_result(conn);
+}
+
+MYSQL_RES* GetCategories(MYSQL* conn, int userID)
+{
+	char query[QUERY_BUFFER];
+	sprintf(query,
+		"SELECT DISTINCT c.CategoryID, c.`Name` "
+		"FROM Category c "
+		"WHERE c.Universal = 1 "
+		"   OR c.CategoryID IN ( "
+		"       SELECT e.CategoryID "
+		"       FROM `Event` e "
+		"       WHERE e.UserID = %d "
+		");",
+		userID);
+
+	if (mysql_query(conn, query) != 0)
+	{
+		PrintSQLError(conn, "GetCategories():");
+		return NULL;
+	}
+
+	return mysql_store_result(conn);
+}
