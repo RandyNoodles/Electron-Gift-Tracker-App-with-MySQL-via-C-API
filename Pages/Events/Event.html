@@ -49,20 +49,17 @@
                     </tr>
                     <!-- Cost and Status ID Row -->
                     <tr>
-                        <td><label for="date">Date:</label></td>
-                        <td colspan="2"><input type="text" id="date" name="date" required></td>
-                        <td><label for="categoryId">Category ID:</label></td>
+                        <td><label for="addDate">Date:</label></td>
+                        <td colspan="2"><input type="text" id="addDate" name="addDate" required></td>
+                        <td><label for="addCategoryId">Category ID:</label></td>
                         <td colspan="2">
-                            <select id="EventCategory" name="EventCategory" required>
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="1">Category 1</option>
-                                <option value="2">Category 2</option>
+                            <select id="addCategoryId" name="addCategoryId" required>
                             </select>
                             <div style="display: flex; align-items: center; margin-top: 10px;">
-                                <input type="checkbox" id="addCategoryCheckbox" name="addCategoryCheckbox">
-                                <label for="addCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
+                                <input type="checkbox" id="addNewCategoryCheckbox" name="addNewCategoryCheckbox">
+                                <label for="addNewCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
                             </div>
-                            <input type="text" id="newCategoryInput" name="newCategory" 
+                            <input type="text" id="addNewCategory" name="addNewCategory" 
                                    placeholder="Enter new category" 
                                    style="display: none; margin-top: 10px; width: 100%;">
                         </td>
@@ -96,16 +93,13 @@
                         <td colspan="2"><input type="text" id="editDate" name="editDate" required></td>
                     </tr>
                     <tr>
-                        <td><label for="editEventCategorty">Event Category</label></td>
+                        <td><label for="editCategoryId">Event Category</label></td>
                         <td colspan="2">
-                            <select id="editEventCategory" name="editEventCategory" required>
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="1">Category 1</option>
-                                <option value="2">Category 2</option>
+                            <select id="editCategoryId" name="editCategoryId" required>
                             </select>
                             <div style="display: flex; align-items: center; margin-top: 10px;">
-                                <input type="checkbox" id="editAddCategoryCheckbox" name="editAddCategoryCheckbox">
-                                <label for="editAddCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
+                                <input type="checkbox" id="editNewCategoryCheckbox" name="editNewCategoryCheckbox">
+                                <label for="editNewCategoryCheckbox" style="margin-left: 5px;">Add New Category</label>
                             </div>
                             <input type="text" id="editNewCategoryInput" name="editNewCategory" 
                                    placeholder="Enter new category" 
