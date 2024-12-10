@@ -242,3 +242,9 @@ body {
     box-shadow: 0 0 5px rgba(4, 170, 109, 0.5);
     outline: none;
 }
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
