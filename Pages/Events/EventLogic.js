@@ -12,51 +12,111 @@ function init(){
     id('addRowBtn').addEventListener('click', ShowAddModal);
     id('addEventForm').addEventListener('submit', AddRow);
     id('closeAddModalBtn').addEventListener('click', HideAddModal);
+    id('cancelAddModal').addEventListener('click', HideAddModal);
 
     id('editRowBtn').addEventListener('click', ShowEditModal);
     id('editEventForm').addEventListener('submit', EditRow);
     id('closeEditModalBtn').addEventListener('click', HideEditModal);
-        //id('deleteRowBtn').addEventListener('click', DeleteRow);
+    id('cancelEditModal').addEventListener('click', HideEditModal);
+    
+    id('deleteRowBtn').addEventListener('click', DeleteRow);
+}
 
+async function DeleteRow(){
+    
+    if (!selectedRow) {
+        alert("Please select a row to delete.");
+        return;
+    }
+
+    // Display confirmation dialog
+    const confirmation = confirm("Are you sure you want to delete this event?");
+    if (confirmation) {
+        let eventID = selectedRow.cells[0].textContent;
+
+        if(eventID != null){
+            
+                let args = [400, eventID];
+            
+                const response = await window.backend.CallDB(args);
+            
+                if(response.success){
+                    RefreshEventTable();
+                }
+    
+                selectedRow = null;
+        }
+    }
 }
 
 
 
-//ADD GIFT STUFF
+//ADD EVENT STUFF
 function ShowAddModal(event){
     id('addModal').style.display = "flex";
     id('addEventForm').reset();
+    PopulateCategoryDropdown(id('addCategoryId'));
 }
 function HideAddModal(event){
     id('addModal').style.display = "none";
     document.getElementById("addEventForm").reset();
 }
-function AddRow(event){
+async function AddRow(event){
     event.preventDefault();
-}
+
+    let name = argString(id('addName').value);
+    let date = argString(id('addDate').value);
+    let categoryID = id('addCategoryId').value;
+    let userId = await window.backend.GetCurrentUserID();
+
+    let args = [201, name, date, categoryID, userId];
 
 
-//EDIT GIFT STUFF
-//
-function ShowEditModal(event){
-    if(selectedRow != null){
-        id('editModal').style.display = "flex";
-        id('editGiftForm').reset();
-        id('editName').value = selectedRow.cells[1].textContent;
-        id('editCost').value = selectedRow.cells[2].textContent;
-        PopulateRecipientDropdown(id('editRecipientId'));
-        PopulateEventDropdown(id('editEventId'));
-        PopulateStatusDropdown(id('editStatusId'));
+    const response = await window.backend.CallDB(args);
+
+    if(response.success){
+        HideAddModal();
+        RefreshEventTable();
+        selectedRow = null;
     }
 }
+
+//EDIT EVENT STUFF
+//
+function ShowEditModal(event){
+    if (!selectedRow) {
+        alert("Please select a row to delete.");
+        return;
+    }
+    id('editModal').style.display = "flex";
+    id('editEventForm').reset();
+    id('editName').value = selectedRow.cells[1].textContent;
+    PopulateCategoryDropdown(id('editCategoryId'));
+}
+
 function HideEditModal(event){
     id('editModal').style.display = "none";
     document.getElementById("editEventForm").reset();
 }
-function EditRow(event){
+async function EditRow(event){
     event.preventDefault();
-}
 
+    let eventID = selectedRow.cells[0].textContent;
+    let name = argString(id('editName').value);
+    let date = argString(id('editDate').value);
+    let categoryID = id('editCategoryId').value;
+    let userID = await window.backend.GetCurrentUserID();
+
+    let args = [301, eventID, name, date, categoryID, userID];
+
+    const response = await window.backend.CallDB(args);
+
+    if(response.success){
+        HideEditModal();
+        RefreshEventTable();
+        selectedRow = null;
+    }
+}
 
 
 async function RefreshEventTable(){
@@ -91,7 +151,6 @@ async function RefreshEventTable(){
         else{
             tableContainer.innerHTML = "<p>Error loading event list: ".concat(response.output);
         }
-
 
         //ADD LISTENERS TO MAKE TABLE HIGHLIGHT SELECTED ROW
         const rows = document.querySelectorAll('#table tbody tr');

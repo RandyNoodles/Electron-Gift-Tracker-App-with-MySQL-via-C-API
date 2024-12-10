@@ -41,21 +41,23 @@
                 <table>
                     <!-- Name Row -->
                     <tr>
-                        <td><label for="name">Event Name:</label></td>
-                        <td colspan="5"><input type="text" id="name" name="name" required></td>
+                        <td><label for="addName">Event Name:</label></td>
+                        <td colspan="5"><input type="text" id="addName" name="addName" required></td>
                     </tr>
                     <!-- Cost and Status ID Row -->
                     <tr>
-                        <td><label for="date">Date:</label></td>
-                        <td colspan="2"><input type="text" id="date" name="date" required></td>
-                        <td><label for="categoryId">Category ID:</label></td>
-                        <td colspan="2"><input type="number" id="categoryId" name="categoryId" required></td>
+                        <td><label for="addDate">Date:</label></td>
+                        <td colspan="2"><input type="text" id="addDate" name="addDate" required></td>
+                        <td><label for="addCategoryId">Category ID:</label></td>
+                        <td colspan="2">
+                        <select id="addCategoryId" name="addCategoryId" required>
+                        </select>
                     </tr>
                     <!-- Submit Button Row -->
                     <tr>
                         <td colspan="6" style="text-align: center;">
-                            <button type="submit" class="navButton">Add Gift</button>
-                            <button type="button" id="cancelModal"class="navButton">Cancel</button>
+                            <button type="submit" class="navButton">Add Event</button>
+                            <button type="button" id="cancelAddModal"class="navButton">Cancel</button>
                         </td>
                     </tr>
                 </table>
@@ -70,16 +72,16 @@
             <form id="editEventForm">
                 <table>
                     <tr>
-                        <td><label for="editEventName">Event Name:</label></td>
-                        <td colspan="2"><input type="text" id="editFirstName" name="editFirstName" required></td>
+                        <td><label for="editName">Event Name:</label></td>
+                        <td colspan="2"><input type="text" id="editName" name="editName" required></td>
                     </tr>
                     <tr>
-                        <td><label for="editEventDate">Last Name:</label></td>
-                        <td colspan="2"><input type="text" id="editLastName" name="editLastName" required></td>
+                        <td><label for="editDate">Event Date:</label></td>
+                        <td colspan="2"><input type="text" id="editDate" name="editDate" required></td>
                     </tr>
                     <tr>
-                        <td><label for="editEventCategorty">Event Category</label></td>
-                        <td colspan="2"><select id="editEventCategorty" name="editEventCategorty" required>
+                        <td><label for="editCategoryId">Event Category</label></td>
+                        <td colspan="2"><select id="editCategoryId" name="editCategoryId" required>
                         </select></td>
                     
                     </tr>

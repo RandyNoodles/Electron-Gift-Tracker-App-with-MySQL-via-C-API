@@ -136,26 +136,5 @@
             </form>
         </div>
     </div>
-
-    <!-- JavaScript
-    DON'T WORRY ABOUT THIS STUFF, IT'S JUST HERE SO I CAN COPY INTO THE JS FILE 
-    -->
-    <script>
-
-        const deleteRowBtn = document.getElementById("deleteRowBtn");
-        deleteRowBtn.onclick = () => {
-            if (!selectedRow) {
-                alert("Please select a row to delete.");
-                return;
-            }
-
-          // Display confirmation dialog
-    const confirmation = confirm("Are you sure you want to delete this gift?");
-    if (confirmation) {
-        selectedRow.remove();
-        selectedRow = null; // Deselect after deletion
-    }
-        };
-    </script>
 </body>
 

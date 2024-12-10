@@ -17,8 +17,36 @@ function init(){
     id('editGiftForm').addEventListener('submit', EditRow);
     id('closeEditModalBtn').addEventListener('click', HideEditModal);
 
-    //id('deleteRowBtn').addEventListener('click', DeleteRow);
+    id('deleteRowBtn').addEventListener('click', DeleteRow);
 }
+
+async function DeleteRow(){
+    
+    if (!selectedRow) {
+        alert("Please select a row to delete.");
+        return;
+    }
+
+    // Display confirmation dialog
+    const confirmation = confirm("Are you sure you want to delete this gift?");
+    if (confirmation) {
+        let giftID = selectedRow.cells[0].textContent;
+
+        if(giftID != null){
+            
+                let args = [400, giftID];
+            
+                const response = await window.backend.CallDB(args);
+            
+                if(response.success){
+                    RefreshGiftTable();
+                }
+    
+                selectedRow = null;
+        }
+    }
+}
+
 
 
 //ADD GIFT STUFF
@@ -101,8 +129,6 @@ async function EditRow(event){
         RefreshGiftTable();
         selectedRow = null;
     }
-
-
 }
 
 
@@ -121,8 +147,7 @@ async function RefreshGiftTable(){
             tableContainer.innerHTML = '<p>No gifts created</p>';
             return;
         }
-
-
+        
         tableContainer.innerHTML = "";
 
         if(response.success){

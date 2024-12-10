@@ -279,30 +279,47 @@ int main(int argc, char* argv[]) {
     else if (command >= 400 && command < 500) {
 
         int deletionRowsAffected = QUERY_FAILURE;
-        
+        int idToDelete = -1;
+
+
+        if (argc != 3) {
+            fprintf(stderr, "Invalid Arg count for DELETE functions.");
+            command = INVALID;
+        }
+
+        if (ParseInt(argv[2], &idToDelete) != SUCCESS) {
+            fprintf(stderr, "Unable to parse ID for item to delete.");
+            command = INVALID;
+        }
+
         switch (command) {
         case DELETE_GIFT:
-            deletionRowsAffected = DeleteGift(conn, argv[2]);
+            deletionRowsAffected = DeleteGift(conn, idToDelete);
             break;
         case DELETE_EVENT:
-            deletionRowsAffected = DeleteGift(conn, argv[2]);
+            deletionRowsAffected = DeleteEvent(conn, idToDelete);
             break;
         case DELETE_RECIPIENT:
-            deletionRowsAffected = DeleteGift(conn, argv[2]);
+            deletionRowsAffected = DeleteRecipient(conn, idToDelete);
             break;
         case DELETE_CATEGORY:
-            deletionRowsAffected = DeleteGift(conn, argv[2]);
+            deletionRowsAffected = DeleteCategory(conn, idToDelete);
             break;
         case DELETE_LOCATION:
-            deletionRowsAffected = DeleteGift(conn, argv[2]);
+            deletionRowsAffected = DeleteLocation(conn, idToDelete);
             break;
         case DELETE_USER:
-            deletionRowsAffected = DeleteGift(conn, argv[2]);
+            deletionRowsAffected = DeleteUser(conn, idToDelete);
             break;
         default:
             fprintf(stderr, "Unrecognized DELETE command: %d", command);
             break;
         }
+
+        if (deletionRowsAffected > 0) {
+            printf("Deletion successful.");
+        }
+
     }
     else {
         fprintf(stderr, "Command %d not recognized.", command);
@@ -312,6 +329,3 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
-
-
-

@@ -33,15 +33,15 @@ In javascript, the value *null* will convert to this automatically when calling 
 | GET_USER			| 106	| userID										|
 |					|		|												|
 | ADD_GIFT          | 200   | name, cost, statusID, recipientID, eventID, locationID |
-| ADD_EVENT         | 201   | name, userID                                  |
+| ADD_EVENT         | 201   | name, userID, date, categoryID                |
 | ADD_RECIPIENT     | 202   | firstName, lastName, dateOfBirth              |
 | ADD_CATEGORY      | 203   | name                                          |
 | ADD_LOCATION      | 204   | name, address                                 |
 | ADD_USER          | 205   | username, password, firstName, lastName, email, phone# |
 |					|		|												|
 | UPDATE_GIFT       | 300   | giftID, name, cost, statusID, recipientID, eventID, locationID |
-| UPDATE_EVENT      | 301   | eventID, name                                 |
-| UPDATE_RECIPIENT  | 302   | recipientID, firstName, lastName              |
+| UPDATE_EVENT      | 301   | eventID, name, date, categoryID               |
+| UPDATE_RECIPIENT  | 302   | recipientID, firstName, lastName, dateOfBirth, userID      |
 | UPDATE_CATEGORY   | 303   | categoryID, name                              |
 | UPDATE_LOCATION   | 304   | locationID, name, address                     |
 |					|		|												|

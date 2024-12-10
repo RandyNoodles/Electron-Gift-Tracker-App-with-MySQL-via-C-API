@@ -55,10 +55,10 @@ int UpdateEvent(MYSQL* conn, char* eventID, char* name, char* date, char* catego
 
 	char query[QUERY_BUFFER];
 	sprintf(query,
-		"UPDATE event SET "
+		"UPDATE `event` SET "
 		"`Name` = %s, "
 		"`Date` = %s, "
-		"CategoryID = %s, "
+		"CategoryID = %s "
 		"WHERE EventID = %s AND UserID = %s; ",
 		name, date, categoryID, eventID, userID);
 

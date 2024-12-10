@@ -26,8 +26,17 @@
             <button id="editRowBtn" class="navButton">Edit Selected</button>
             <button id="deleteRowBtn" class="deleteButton">Delete Selected</button>
         </div>
+
+        <div id="recipientTableContainer">
+            <!-- DYNAMIC STUFF GOES HERE -->
+
+        </div>
+
+
     </div>  
-    
+
+
+   
     
     <div id="addModal" class="modal">
         <div class="modal-content">
@@ -37,16 +46,16 @@
                 <table>
                     <!-- Name Row -->
                     <tr>
-                        <td><label for="firstName">First Name</label></td>
-                        <td colspan="5"><input type="text" id="firstName" name="firstName" required></td>
+                        <td><label for="addFirstName">First Name</label></td>
+                        <td colspan="5"><input type="text" id="addFirstName" name="addFirstName" required></td>
                     </tr>
                     <tr>
-                        <td><label for="lastName">Last Name</label></td>
-                        <td colspan="5"><input type="text" id="lastName" name="lastName"></td>
+                        <td><label for="addLastName">Last Name</label></td>
+                        <td colspan="5"><input type="text" id="addLastName" name="addLastName"></td>
                     </tr>
                     <tr>
-                        <td><label for="dateOfBirth">Date Of Birth</label></td>
-                        <td colspan="5"><input type="text" id="dateOfBirth" name="dateOfBirth"></td>
+                        <td><label for="addDateOfBirth">Date Of Birth</label></td>
+                        <td colspan="5"><input type="text" id="addDateOfBirth" name="addDateOfBirth"></td>
                     </tr>
                     <!-- Submit Button Row -->
                     <tr>
@@ -73,25 +82,13 @@
                         <td colspan="2"><input type="text" id="editFirstName" name="editFirstName" required></td>
                     </tr>
                     <tr>
-                        <td><label for="editLasttName">Last Name:</label></td>
+                        <td><label for="editLastName">Last Name:</label></td>
                         <td colspan="2"><input type="text" id="editLastName" name="editLastName" required></td>
                     </tr>
                     <tr>
                         <td><label for="editDateOfBirth">Date of Birth:</label></td>
                         <td colspan="2"><input type="text" id="editDateOfBirth" name="editDateOfBirth" required></td>
                     </tr>
-                    <tr>
-                        <td><label for="editEventId">Event ID:</label></td>
-                        <td colspan="2">
-                            <select id="editEventId" name="editEventId" required>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="editCost">Cost:</label></td>
-                        <td colspan="2"><input type="number" id="editCost" name="editCost" required></td>
-                    </tr>
-                    
                     <tr>
                         <td colspan="2" style="text-align: center;">
                             <button type="submit" class="navButton">Save Changes</button>
