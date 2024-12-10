@@ -1,6 +1,9 @@
 window.addEventListener('load', init);
 
 let selectedRow = null;
+function SelectRow(event){
+    selectedRow = event.target.closest('tr');
+}
 
 function init(){
     RefreshGiftTable();
@@ -16,9 +19,7 @@ function init(){
 
     //id('deleteRowBtn').addEventListener('click', DeleteRow);
 }
-function SelectRow(event){
-    selectedRow = event.target.closest('tr');
-}
+
 
 //ADD GIFT STUFF
 function ShowAddModal(event){
@@ -45,21 +46,30 @@ function ShowEditModal(event){
         PopulateRecipientDropdown(id('editRecipientId'));
         PopulateEventDropdown(id('editEventId'));
         PopulateStatusDropdown(id('editStatusId'));
-        
     }
 }
 function HideEditModal(event){
     id('editModal').style.display = "none";
     document.getElementById("addGiftForm").reset();
 }
-function EditRow(event){
+async function EditRow(event){
     event.preventDefault();
+
+    let giftID = selectedRow.cells[0].textContent;
+    let name = argString(id('editName').value);
+    let cost = id('editCost').value;
+    let recipientID = id('editRecipientId').value;
+    let eventID = id('editEventId').value;
+    let statusID = id('editStatusId').value;
+    let purchaseLocationID = 1;
+
+    let args = [giftID, name, cost, statusID, recipientID, eventID, purchaseLocationID];
+
+    let response = await window.backend.CallDB(args);
+
+    
+
 }
-
-
-
-
-
 
 
 async function RefreshGiftTable(){

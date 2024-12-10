@@ -2,7 +2,6 @@
 #pragma warning(disable: 4996)
 
 
-
 MYSQL_RES* GetGifts(MYSQL* conn, int userId) {
 	char query[QUERY_BUFFER];
 	sprintf(query,
@@ -47,7 +46,7 @@ MYSQL_RES* GetEvents(MYSQL* conn, int userId) {
 MYSQL_RES* GetRecipients(MYSQL* conn, int userId) {
 	char query[QUERY_BUFFER];
 	sprintf(query,
-		"SELECT FirstName, LastName, DateOfBirth AS 'DOB' FROM recipient WHERE userID = %d;",
+		"SELECT RecipientID, FirstName, LastName, DateOfBirth AS 'DOB' FROM recipient WHERE userID = %d;",
 		userId);
 
 	if (mysql_query(conn, query) != 0)
@@ -71,8 +70,6 @@ MYSQL_RES* GetStatuses(MYSQL* conn, int userID) {
 	}
 	return mysql_store_result(conn);
 }
-
-
 
 
 MYSQL_RES* GetUser(MYSQL* conn, int userID) {

@@ -6,7 +6,7 @@
 
     <script src="../../Renderer/Utils.js"></script>
     <script src="../../Renderer/Navigation.js"></script>
-    <script src="GiftLogic.js"></script>
+    <script src="EventLogic.js"></script>
 
     <title>From the creators of Grindr</title>
   </head>
@@ -28,7 +28,9 @@
             <button id="deleteRowBtn" class="deleteButton">Delete Selected</button>
         </div>
         
-      
+      <div id="eventTableContainer">
+        <!-- DYNAMIC STUFF GOES HERE -->
+      </div>
     </div>
     
     <div id="addModal" class="modal">
@@ -64,7 +66,7 @@
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span id="closeEditModalBtn"class="close">&times;</span>
-            <h1>Edit Even</h1>
+            <h1>Edit Event</h1>
             <form id="editEventForm">
                 <table>
                     <tr>
