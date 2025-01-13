@@ -63,7 +63,7 @@ async function DeleteRow(){
 
         if(eventID != null){
             
-                let args = [400, eventID];
+                let args = [401, eventID];
             
                 const response = await window.backend.CallDB(args);
             

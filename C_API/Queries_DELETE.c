@@ -26,7 +26,7 @@ int DeleteEvent(MYSQL* conn, int eventID) {
 	char query[QUERY_BUFFER];
 
 	sprintf(query,
-		"DELETE FROM event WHERE EventID = %d;",
+		"DELETE FROM `event` WHERE EventID = %d;",
 		eventID);
 
 	if (mysql_query(conn, query) != 0) {

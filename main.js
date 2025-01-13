@@ -1,12 +1,9 @@
-//THIS IS BASICALLY SERVER-SIDE CODE
-
 let openWithDevConsole = true;
 let currentUserID = NaN;
 
 
-
 //Main electron stuff for spawning window, and inter-process communication
-const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 //Supporting functions
 const MySQLAPI = require('./APICalls.js');
 //Filesystem
@@ -25,7 +22,7 @@ app.on('ready', ()=>{
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
-            enableRemoteModule: false,
+            enableRemoteModule: false
         },
     });
 

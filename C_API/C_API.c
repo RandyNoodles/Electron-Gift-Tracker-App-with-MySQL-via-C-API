@@ -279,8 +279,8 @@ int main(int argc, char* argv[]) {
     //////////////////
     //DELETE COMMANDS
     //
-    //1. Branch to command
-    //2. Validate arg count for that command
+    //1. Validate arg count
+    //2. Parse item ID
     //3. -> Call Update function
     //4. If successful printf {UpdatedItemID: <itemID>}
     else if (command >= 400 && command < 500) {

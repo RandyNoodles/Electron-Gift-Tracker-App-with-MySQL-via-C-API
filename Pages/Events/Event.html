@@ -8,7 +8,7 @@
     <script src="../../Renderer/Navigation.js"></script>
     <script src="EventLogic.js"></script>
 
-    <title>Events</title>
+    <title>Givr - Gift tracker extraordinnaire!</title>
   </head>
 
 <body>
@@ -125,30 +125,5 @@
             </form>
         </div>
     </div>
-    
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const addCategoryCheckbox = document.getElementById("addCategoryCheckbox");
-        const newCategoryInput = document.getElementById("newCategoryInput");
-        const editAddCategoryCheckbox = document.getElementById("editAddCategoryCheckbox");
-        const editNewCategoryInput = document.getElementById("editNewCategoryInput");
-    
-        // Toggle visibility of the new category input in Add Modal
-        addCategoryCheckbox.addEventListener("change", function () {
-            if (addCategoryCheckbox.checked) {
-                newCategoryInput.style.display = "block";
-            } else {
-                newCategoryInput.style.display = "none";
-            }
-        });
-    
-        // Toggle visibility of the new category input in Edit Modal
-        editAddCategoryCheckbox.addEventListener("change", function () {
-            if (editAddCategoryCheckbox.checked) {
-                editNewCategoryInput.style.display = "block";
-            } else {
-                editNewCategoryInput.style.display = "none";
-            }
-        });
-    });
-</script>
+</body>
+</html>
